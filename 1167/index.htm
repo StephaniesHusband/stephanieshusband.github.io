@@ -1,0 +1,342 @@
+<html>
+   <head>
+      <meta charset="UTF-8">
+      <title>1167 Proof of Concept!</title>
+      <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+      <script src="./js/1167.js"></script>
+      <link rel="stylesheet" type="text/css" href="css/style.css" media="all" />
+   </head>
+   <body>
+      <div id="setup">
+         <h1>Display Options for POC</h1>
+         <input id="toggleInfoIcons" type="checkbox" checked="checked"/>
+         <label for="toggleInfoIcons">Show Info Icons</label>
+      </div>
+      <div class="formLayout">
+         <label>Journey Type</label>
+         <select id="cboJourneyType" name="cboJourneyType" class="control">
+            <option value="1way">One Way</option>
+            <option value="2way">Round Trip</option>
+         </select>
+         <br/>
+         <label>Configuration for</label>
+         <select id="cboConfigFor" name="cboConfigFor" class="control">
+            <option value="segment">By Segment</option>
+            <option value="entire">Entire Journey</option>
+            <option value="advanced">Advanced</option>
+         </select>
+         <div id="advRadios">
+            <label>&nbsp;</label>
+            <div class="control">
+               <input id="phase" type="radio" value="phase" name="advanced">By Phase</input><br/>
+               <input id="location" type="radio" value="location" name="advanced">By Location</input><br/>
+               <input id="date" type="radio" value="date" name="advanced">By Date/Time</input>
+            </div>
+         </div>
+         <br/>
+         <label>Expected Battery Life:</label><div class="control">3 - 50 days</div>
+         <br/>
+      </div>
+      <table id="byPhaseSettings">
+         <tr id="twoWayHeaderRow">
+            <th>&nbsp;</th>
+            <th>Outbound</th>
+            <th>Inbound</th>
+         </tr>
+         <tr id="byPhaseHeaderRow">
+            <td>&nbsp;</td>
+            <td class="outbound">Staged</td>
+            <td class="outbound">In Transit</td>
+            <td class="outbound">Received</td>
+            <td class="inbound">In Transit</td>
+            <td class="inbound">Returned</td>
+         </tr>
+         <tr id="enableMotionHibernateRow">
+            <td><img src="images/info.png">Enable Motion Hibernate:</td>
+            <td><input id="" type="checkbox" class="motionHib" name="" /></td>
+            <td><input id="" type="checkbox" class="motionHib" name="" /></td>
+            <td><input id="" type="checkbox" class="motionHib" name="" /></td>
+            <td><input id="" type="checkbox" class="motionHib" name="" /></td>
+            <td><input id="" type="checkbox" class="motionHib" name="" /></td>
+         </tr>
+         <tr id="rptRateRow" class="nonMotionHib">
+            <td>Reporting Rate:</td>
+            <td>
+               <span>--</span><select class="ri"></select>
+            </td>
+            <td>
+               <span>--</span><select class="ri"></select>
+            </td>
+            <td>
+               <span>--</span><select class="ri"></select>
+            </td>
+            <td>
+               <span>--</span><select class="ri"></select>
+            </td>
+            <td>
+               <span>--</span><select class="ri"></select>
+            </td>
+         </tr>
+         <tr id="inMotionRptRateRow" class="motionHib">
+            <td>Reporting Rate - In Motion:</td>
+            <td>
+               <span>--</span><select class="ri"></select>
+            </td>
+            <td>
+               <span>--</span><select class="ri"></select>
+            </td>
+            <td>
+               <span>--</span><select class="ri"></select>
+            </td>
+            <td>
+               <span>--</span><select class="ri"></select>
+            </td>
+            <td>
+               <span>--</span><select class="ri"></select>
+            </td>
+         </tr>
+         <tr id="stationaryRptRateRow" class="motionHib">
+            <td>Reporting Rate - Stationary:</td>
+            <td>
+               <span>--</span><select class="ri"></select>
+            </td>
+            <td>
+               <span>--</span><select class="ri"></select>
+            </td>
+            <td>
+               <span>--</span><select class="ri"></select>
+            </td>
+            <td>
+               <span>--</span><select class="ri"></select>
+            </td>
+            <td>
+               <span>--</span><select class="ri"></select>
+            </td>
+         </tr>
+         <tr id="enableDevicePing">
+            <td><img src="images/info.png">Enable Device Ping:</td>
+            <td><input id="" type="checkbox" name="" /></td>
+            <td><input id="" type="checkbox" name="" /></td>
+            <td><input id="" type="checkbox" name="" /></td>
+            <td><input id="" type="checkbox" name="" /></td>
+            <td><input id="" type="checkbox" name="" /></td>
+         </tr>
+         <tr id="collectTemperatureRow">
+            <td>Collect Temperature:</td>
+            <td><input id="" type="checkbox" name="" /></td>
+            <td><input id="" type="checkbox" name="" /></td>
+            <td><input id="" type="checkbox" name="" /></td>
+            <td><input id="" type="checkbox" name="" /></td>
+            <td><input id="" type="checkbox" name="" /></td>
+         </tr>
+         <tr id="collectHumidityRow">
+            <td>Collect Humidity:</td>
+            <td><input id="" type="checkbox" name="" /></td>
+            <td><input id="" type="checkbox" name="" /></td>
+            <td><input id="" type="checkbox" name="" /></td>
+            <td><input id="" type="checkbox" name="" /></td>
+            <td><input id="" type="checkbox" name="" /></td>
+         </tr>
+         <tr id="collectBarametricPressureRow">
+            <td>Collect Barometric Pressure:</td>
+            <td><input id="" type="checkbox" name="" /></td>
+            <td><input id="" type="checkbox" name="" /></td>
+            <td><input id="" type="checkbox" name="" /></td>
+            <td><input id="" type="checkbox" name="" /></td>
+            <td><input id="" type="checkbox" name="" /></td>
+         </tr>
+         <tr id="collectLightRow">
+            <td>Collect Light:</td>
+            <td><input id="" type="checkbox" name="" /></td>
+            <td><input id="" type="checkbox" name="" /></td>
+            <td><input id="" type="checkbox" name="" /></td>
+            <td><input id="" type="checkbox" name="" /></td>
+            <td><input id="" type="checkbox" name="" /></td>
+         </tr>
+         <tr id="collectEnableLocationServicesRow">
+            <td><img src="images/info.png">Enable Location Services:</td>
+            <td><input id="" type="checkbox" name="" /></td>
+            <td><input id="" type="checkbox" name="" /></td>
+            <td><input id="" type="checkbox" name="" /></td>
+            <td><input id="" type="checkbox" name="" /></td>
+            <td><input id="" type="checkbox" name="" /></td>
+         </tr>
+      </table>
+      <div id="byLocationSettings">
+         <label>Device Settings</label>
+         <table>
+            <tr>
+               <td><img src="images/info.png">Enable Motion Hibernate:</td>
+               <td><input id="" type="checkbox" class="motionHib" name="" /></td>
+            </tr>
+            <tr>
+               <td>Collect Temperature:</td>
+               <td><input id="" type="checkbox" name="" /></td>
+            </tr>
+            <tr>
+               <td>Collect Humidity:</td>
+               <td><input id="" type="checkbox" name="" /></td>
+            </tr>
+            <tr>
+               <td>Collect Barometric Pressure:</td>
+               <td><input id="" type="checkbox" name="" /></td>
+            </tr>
+            <tr>
+               <td>Collect Light:</td>
+               <td><input id="" type="checkbox" name="" /></td>
+            </tr>
+            <tr>
+               <td><img src="images/info.png">Enable Location Services</td>
+               <td><input id="" type="checkbox" name="" /></td>
+            </tr>
+         </table>
+         <label>Reporting Intervals</label>
+         <div id="reportingIntervals">
+            <input id="inOut" value="inOut" type="radio" name="locRI">Inside and Outside of Geofences(s)</input><br/>
+            <div id="locInOutGeofence">
+               <span class="col1">&nbsp;</span>
+               <label class="col2">In Motion</label>
+               <label class="col3">Stationary</label>
+               <br/>
+               <label class="col1">Outside of Geofence:</label>
+               <span>--</span><select class="ri col2"></select>
+               <span>--</span><select class="ri col3"></select>
+               <br/>
+               <label class="col1">Inside of Geofence:</label>
+               <br/>
+               <select id="" class="col1" name="">
+                  <option value="">Geofence 1</option>
+                  <option value="">Geofence 2</option>
+                  <option value="">Geofence 3</option>
+               </select>
+               <span>--</span><select class="ri col2"></select>
+               <span>--</span><select class="ri col3"></select>
+               <span class="plusminus">-</span>
+               <br/>
+               <select id="" class="col1" name="">
+                  <option value="">Geofence 1</option>
+                  <option value="">Geofence 2</option>
+                  <option value="">Geofence 3</option>
+               </select>
+               <span>--</span><select class="ri col2"></select>
+               <span>--</span><select class="ri col3"></select>
+               <span class="plusminus">- +</span>
+               <br/>
+            </div>
+            <input id="enterExit" value="enterExit" type="radio" name="locRI">Upon Entering or Exiting a Geofence</input>
+            <div id="locEnterExitGeofence">
+               <label class="col1">&nbsp;</label>
+               <label class="col2">&nbsp;</label>
+               <label class="col3">&nbsp;</label>
+               <label class="col4">In Motion</label>
+               <label class="col5">Stationary</label>
+               <br/>
+               <label class="col1" style="width: 250px;">Starting Reporting Interval:</label>
+               <span>--</span><select class="col4 ri"></select>
+               <span>--</span><select class="col5 ri"></select>
+               <br/>
+               <label class="col1">Upon</label>
+               <select id="" class="col2" name="">
+                  <option value="">Entering</option>
+                  <option value="">Exiting</option>
+               </select>
+               <select id="" class="col3" name="">
+                  <option value="">Geofence 1</option>
+                  <option value="">Geofence 2</option>
+                  <option value="">Geofence 3</option>
+               </select>
+               <span>--</span><select class="col4 ri"></select>
+               <span>--</span><select class="col5 ri"></select>
+               <span class="plusminus">-</span>
+               <br/>
+               <label class="col1">Upon</label>
+               <select id="" class="col2" name="">
+                  <option value="">Entering</option>
+                  <option value="">Exiting</option>
+               </select>
+               <select id="" class="col3" name="">
+                  <option value="">Geofence 1</option>
+                  <option value="">Geofence 2</option>
+                  <option value="">Geofence 3</option>
+               </select>
+               <span>--</span><select class="col4 ri"></select>
+               <span>--</span><select class="col5 ri"></select>
+               <span class="plusminus">- +</span>
+               <br/>
+            </div>
+         </div>
+      </div>
+      <div id="byDateSettings">
+         <label>Device Settings</label>
+         <table>
+            <tr>
+               <td><img src="images/info.png">Enable Motion Hibernate:</td>
+               <td><input id="" type="checkbox" class="motionHib" name="" /></td>
+            </tr>
+            <tr>
+               <td>Collect Temperature:</td>
+               <td><input id="" type="checkbox" name="" /></td>
+            </tr>
+            <tr>
+               <td>Collect Humidity:</td>
+               <td><input id="" type="checkbox" name="" /></td>
+            </tr>
+            <tr>
+               <td>Collect Barometric Pressure:</td>
+               <td><input id="" type="checkbox" name="" /></td>
+            </tr>
+            <tr>
+               <td>Collect Light:</td>
+               <td><input id="" type="checkbox" name="" /></td>
+            </tr>
+            <tr>
+               <td><img src="images/info.png">Enable Location Services</td>
+               <td><input id="" type="checkbox" name="" /></td>
+            </tr>
+         </table>
+         <label>Reporting Intervals</label>
+         <div id="byDateRI">
+            <label class="col1">&nbsp;</label>
+            <label class="col2">&nbsp;</label>
+            <label class="col3">&nbsp;</label>
+            <label class="col4">&nbsp;</label>
+            <label class="col5">&nbsp;</label>
+            <label class="col6">In Motion</label>
+            <label class="col7">Stationary</label>
+            <br/>
+            <label class="col1">&nbsp;</label>
+            <label class="col2" style="width: 280px;">Starting Reporting Interval:</label>
+            <span>--</span><select class="col6 ri"></select>
+            <span>--</span><select class="col7 ri"></select>
+            <br/>
+            <label class="col1">At</label>
+            <input id="" type="text" name="" class="col2" placeholder="Date"/>
+            <input id="" type="text" name="" class="col3" placeholder="Time"/>
+            <select id="" class="col4" name="">
+               <option value="">Select Timezone</option>
+               <option value="">TZ1</option>
+               <option value="">TZ2</option>
+               <option value="">TZ3</option>
+            </select>
+            <label class="col5">Report at</label>
+            <span>--</span><select class="col6 ri"></select>
+            <span>--</span><select class="col7 ri"></select>
+            <span class="plusminus">-</span>
+            <br/>
+            <label class="col1">At</label>
+            <input id="" type="text" name="" class="col2" placeholder="Date"/>
+            <input id="" type="text" name="" class="col3" placeholder="Time"/>
+            <select id="" class="col4" name="">
+               <option value="">Select Timezone</option>
+               <option value="">TZ1</option>
+               <option value="">TZ2</option>
+               <option value="">TZ3</option>
+            </select>
+            <label class="col5">Report at</label>
+            <span>--</span><select class="col6 ri"></select>
+            <span>--</span><select class="col7 ri"></select>
+            <span class="plusminus">- +</span>
+         </div>
+      </div>
+   </body>
+</html>
