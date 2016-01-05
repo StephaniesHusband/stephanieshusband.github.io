@@ -1,0 +1,65 @@
+html, body, h4 {
+   height: 100%;
+   margin: 0;
+   padding: 0;
+}
+#map {
+   float: right;
+   height: 100%;
+   width: 69%;
+}
+#left-panel {
+   float: left;
+   height: 100%;
+   width: 30%;
+   padding-left: 5px;
+}
+
+#results { 
+   display: none;
+   width: 100%;
+}
+#results select {
+   width: 100%;
+}
+
+.accordion {
+   width: 100%;
+}
+.accordion-head {
+   cursor: pointer;
+   overflow: hidden;
+}
+.accordion-head h4 {
+   float: left;
+   margin: 0;
+}
+.accordion-body {
+   display: none;
+}
+.arrow {
+   display: inline-block;
+   width: 0px;
+   height: 0px;
+   border: 6px solid transparent;
+   border-top-color: #000;
+   margin-top: 7px;
+}
+.accordion-head.open .arrow {
+   border-bottom-color: #000;
+   border-top-color: transparent;
+   margin-top: 0;
+}
+
+@media only screen and (max-width: 799px) {
+   #map {
+      float: none;
+      height: 100%;
+      width: 100%;
+   }
+   #left-panel {
+      float: none;
+      height: auto;
+      width: 100%;
+   }
+}
