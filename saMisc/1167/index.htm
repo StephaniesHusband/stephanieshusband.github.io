@@ -28,9 +28,9 @@
          <div id="advRadios">
             <label>&nbsp;</label>
             <div class="control">
-               <input id="phase" type="radio" value="phase" name="advanced">By Phase</input><br/>
                <input id="location" type="radio" value="location" name="advanced">By Location</input><br/>
-               <input id="date" type="radio" value="date" name="advanced">By Date/Time</input>
+               <input id="phase" disabled="disabled" type="radio" value="phase" name="advanced">By Phase (future)</input><br/>
+               <input id="date" disabled="disabled" type="radio" value="date" name="advanced">By Date/Time (future)</input>
             </div>
          </div>
          <br/>
@@ -167,7 +167,7 @@
          <table>
             <tr>
                <td><img src="images/info.png">Enable Motion Hibernate:</td>
-               <td><input id="" type="checkbox" class="motionHib" name="" /></td>
+               <td><input id="" type="checkbox" class="motionHibCtrl" name="" /></td>
             </tr>
             <tr>
                <td>Collect Temperature:</td>
@@ -195,77 +195,100 @@
             <input id="inOut" value="inOut" type="radio" name="locRI">Inside and Outside of Geofences(s)</input><br/>
             <div id="locInOutGeofence">
                <span class="col1">&nbsp;</span>
-               <label class="col2">In Motion</label>
-               <label class="col3">Stationary</label>
+               <span class="col2">&nbsp;</span>
+               <label class="col3 nonMotionHib" style="margin-left:-5px; text-align: center; width: 150px;">Reporting Interval</label>
+               <span class="col4 nonMotionHib">&nbsp;</span>
+               <label class="col3 motionHib">In Motion</label>
+               <label class="col4 motionHib">Stationary</label>
                <br/>
-               <label class="col1">Outside of Geofence:</label>
-               <span>--</span><select class="ri col2"></select>
-               <span>--</span><select class="ri col3"></select>
-               <br/>
-               <label class="col1">Inside of Geofence:</label>
+               <label class="col1" style="width: 270px;">Starting Reporting Interval:</label>
+               <select class="ri col3 nonMotionHib"></select>
+               <span class="col4 nonMotionHib">&nbsp;</span>
+               <select class="ri col3 motionHib"></select>
+               <select class="ri col4 motionHib"></select>
                <br/>
                <select id="" class="col1" name="">
+                  <option value="">Inside</option>
+                  <option value="" selected>Outside</option>
+               </select>
+               <select id="" class="col2" name="">
                   <option value="">Geofence 1</option>
                   <option value="">Geofence 2</option>
                   <option value="">Geofence 3</option>
                </select>
-               <span>--</span><select class="ri col2"></select>
-               <span>--</span><select class="ri col3"></select>
+               <select class="ri col3 nonMotionHib"></select>
+               <select class="ri col3 motionHib"></select>
+               <select class="ri col4 motionHib"></select>
                <span class="plusminus">-</span>
                <br/>
                <select id="" class="col1" name="">
+                  <option value="">Inside</option>
+                  <option value="">Outside</option>
+               </select>
+               <select id="" class="col2" name="">
                   <option value="">Geofence 1</option>
-                  <option value="">Geofence 2</option>
+                  <option value="" selected>Geofence 2</option>
                   <option value="">Geofence 3</option>
                </select>
-               <span>--</span><select class="ri col2"></select>
-               <span>--</span><select class="ri col3"></select>
+               <select class="ri col3 nonMotionHib"></select>
+               <select class="ri col3 motionHib"></select>
+               <select class="ri col4 motionHib"></select>
                <span class="plusminus">- +</span>
                <br/>
             </div>
             <input id="enterExit" value="enterExit" type="radio" name="locRI">Upon Entering or Exiting a Geofence</input>
             <div id="locEnterExitGeofence">
-               <label class="col1">&nbsp;</label>
-               <label class="col2">&nbsp;</label>
-               <label class="col3">&nbsp;</label>
-               <label class="col4">In Motion</label>
-               <label class="col5">Stationary</label>
+               <span class="col1">&nbsp;</span>
+               <span class="col2">&nbsp;</span>
+               <label class="col3 nonMotionHib" style="margin-left:7px; text-align: center; width: 150px;">Reporting Interval</label>
+               <span class="col4 nonMotionHib">&nbsp;</span>
+               <label class="col3 motionHib">In Motion</label>
+               <label class="col4 motionHib">Stationary</label>
                <br/>
-               <label class="col1" style="width: 250px;">Starting Reporting Interval:</label>
-               <span>--</span><select class="col4 ri"></select>
-               <span>--</span><select class="col5 ri"></select>
+               <label class="col1" style="width: 283px;">Starting Reporting Interval:</label>
+               <select class="ri col3 nonMotionHib"></select>
+               <span class="col4 nonMotionHib">&nbsp;</span>
+               <select class="ri col3 motionHib"></select>
+               <select class="ri col4 motionHib"></select>
                <br/>
-               <label class="col1">Upon</label>
+               <div class="col1" style="width:113px; line-height: 1em">
+                  <span>Upon</span>
+                  <select id="" name="">
+                     <option value="">Entering</option>
+                     <option value="">Exiting</option>
+                  </select>
+               </div>
                <select id="" class="col2" name="">
-                  <option value="">Entering</option>
-                  <option value="">Exiting</option>
-               </select>
-               <select id="" class="col3" name="">
                   <option value="">Geofence 1</option>
                   <option value="">Geofence 2</option>
                   <option value="">Geofence 3</option>
                </select>
-               <span>--</span><select class="col4 ri"></select>
-               <span>--</span><select class="col5 ri"></select>
+               <select class="ri col3 nonMotionHib"></select>
+               <select class="ri col3 motionHib"></select>
+               <select class="ri col4 motionHib"></select>
                <span class="plusminus">-</span>
                <br/>
-               <label class="col1">Upon</label>
+               <div class="col1" style="width:113px; line-height: 1em">
+                  <span>Upon</span>
+                  <select id="" name="">
+                     <option value="">Entering</option>
+                     <option value="" selected>Exiting</option>
+                  </select>
+               </div>
                <select id="" class="col2" name="">
-                  <option value="">Entering</option>
-                  <option value="">Exiting</option>
-               </select>
-               <select id="" class="col3" name="">
                   <option value="">Geofence 1</option>
-                  <option value="">Geofence 2</option>
+                  <option value="" selected>Geofence 2</option>
                   <option value="">Geofence 3</option>
                </select>
-               <span>--</span><select class="col4 ri"></select>
-               <span>--</span><select class="col5 ri"></select>
+               <select class="ri col3 nonMotionHib"></select>
+               <select class="ri col3 motionHib"></select>
+               <select class="ri col4 motionHib"></select>
                <span class="plusminus">- +</span>
                <br/>
             </div>
          </div>
       </div>
+      <!--
       <div id="byDateSettings">
          <label>Device Settings</label>
          <table>
@@ -306,8 +329,8 @@
             <br/>
             <label class="col1">&nbsp;</label>
             <label class="col2" style="width: 280px;">Starting Reporting Interval:</label>
-            <span>--</span><select class="col6 ri"></select>
-            <span>--</span><select class="col7 ri"></select>
+            <select class="col6 ri"></select>
+            <select class="col7 ri"></select>
             <br/>
             <label class="col1">At</label>
             <input id="" type="text" name="" class="col2" placeholder="Date"/>
@@ -319,8 +342,8 @@
                <option value="">TZ3</option>
             </select>
             <label class="col5">Report at</label>
-            <span>--</span><select class="col6 ri"></select>
-            <span>--</span><select class="col7 ri"></select>
+            <select class="col6 ri"></select>
+            <select class="col7 ri"></select>
             <span class="plusminus">-</span>
             <br/>
             <label class="col1">At</label>
@@ -333,10 +356,10 @@
                <option value="">TZ3</option>
             </select>
             <label class="col5">Report at</label>
-            <span>--</span><select class="col6 ri"></select>
-            <span>--</span><select class="col7 ri"></select>
+            <select class="col6 ri"></select>
+            </span><select class="col7 ri"></select>
             <span class="plusminus">- +</span>
          </div>
-      </div>
+      </div> -->
    </body>
 </html>

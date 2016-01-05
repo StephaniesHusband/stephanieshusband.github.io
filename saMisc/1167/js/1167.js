@@ -21,7 +21,7 @@ var POC_1167 = {
       var advType = $("input[name='advanced']:checked").val();
 
       // always show 1
-      this.toggleCol($("#byPhaseSettings"), [ 1 ], true);
+      POC_1167.toggleCol($("#byPhaseSettings"), [ 1 ], true);
 
       if (configType === 'advanced')
       {
@@ -97,9 +97,11 @@ $(function() {
    $("#cboConfigFor option[value='segment']").attr("disabled", true);
    // Select "Entire Journey"
    $("#cboConfigFor").val("entire");
-   // Disable all the motion hibernate selects
-   //$("tr.motionHib td select").prop("disabled", true);
-   $("tr.motionHib td select").hide();
+   // Disable ALL the motion hibernate selects
+   $(".motionHib select").hide();
+   $("#locRI").val("inOut");
+
+   $("#byLocationSettings .motionHib").hide();
 
    POC_1167.populateRIs();
 
@@ -109,14 +111,19 @@ $(function() {
       var ndx = $(this).parent().index(); // the column index
 
       // The regular reporting interval selects...
-      //$("tr.nonMotionHib td:eq("+ndx+") select").prop("disabled", isMH);
       $("tr.nonMotionHib td:eq("+ndx+") select").toggle(!isMH).prev().toggle(isMH);
 
       // The motion hibernate reporting interval selects (in-motion and stationary)...
       $("tr.motionHib").each(function() {
-         //$(this).find("td:eq("+ndx+") select").prop("disabled", !isMH);
          $(this).find("td:eq("+ndx+") select").toggle(isMH).prev().toggle(!isMH);
       });
+   });
+
+   $("#byLocationSettings :checkbox.motionHibCtrl").on("change", function() {
+      var isMH = $(this).is(":checked");
+
+      $("#byLocationSettings .motionHib").toggle(isMH);
+      $("#byLocationSettings .nonMotionHib").toggle(!isMH);
    });
 
    $("#toggleInfoIcons").on("change", function() {
@@ -133,8 +140,9 @@ $(function() {
 
       POC_1167.showCols();
 
+      // Select "by location" as default
       if (this.value === 'advanced') {
-         $('#phase').click();
+         $('#location').click();
       }
    });
 
@@ -150,6 +158,4 @@ $(function() {
 
    // Advanced type changed...
    $("input[name='locRI']").change(POC_1167.showLocFields);
-});
-
-
+}); 

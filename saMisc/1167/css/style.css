@@ -16,8 +16,7 @@ img {
    display: none;
 }
 
-#byPhaseHeaderRow, #twoWayHeaderRow, #advRadios,
-#byLocationSettings, #locEnterExitGeofence, #byDateSettings {
+#byPhaseHeaderRow, #twoWayHeaderRow, #advRadios, #byLocationSettings, #locEnterExitGeofence, #byDateSettings {
    display: none;
 }
 
@@ -98,6 +97,7 @@ td:nth-child(6) {
 .col1, .col2, .col3, .col4, .col5, .col6, .col7 {
    display: block;
    float: left;
+   margin-left: 20px;
 }
 #locInoutGeofence, #locEnterExitGeofence, #byDateRI {
    line-height: 2.1em;
@@ -109,58 +109,35 @@ td:nth-child(6) {
 #locInOutGeofence label, #locEnterExitGeofence label {
    display: inline;
 }
-#locInOutGeofence label.col2,
-#locInOutGeofence label.col3,
-#locEnterExitGeofence label.col4,
-#locEnterExitGeofence label.col5 {
+#locInOutGeofence label.col2, #locEnterExitGeofence label.col2,
+#locInOutGeofence label.col3, #locEnterExitGeofence label.col3,
+#locInOutGeofence label.col4, #locEnterExitGeofence label.col4 {
    text-align: center;
 }
-#locInOutGeofence .col1 {
+#locInOutGeofence .col1, #locEnterExitGeofence .col1,
+#locInOutGeofence .col3, #locEnterExitGeofence .col3,
+#locInOutGeofence .col4, #locEnterExitGeofence .col4 {
+   width: 100px;
+}
+#locInOutGeofence .col2, #locEnterExitGeofence .col2 {
    width: 150px;
-   margin-right: 20px;
-}
-#locInOutGeofence .col2,
-#locInOutGeofence .col3 {
-   width: 100px;
-}
-
-#locEnterExitGeofence .col1 {
-   width: 50px;
-}
-#locEnterExitGeofence .col2 {
-   width: 100px;
-}
-#locEnterExitGeofence .col3 {
-   width: 100px;
-}
-#locEnterExitGeofence .col4 {
-   width: 100px;
-}
-#locEnterExitGeofence .col5 {
-   width: 100px;
 }
 
 #byDateSettings .col1 {
    width: 25px;
 }
-#byDateSettings .col2 {
-   width: 50px;
-}
+#byDateSettings .col2,
 #byDateSettings .col3 {
    width: 50px;
 }
-#byDateSettings .col4 {
+#byDateSettings .col4,
+#byDateSettings .col6,
+#byDateSettings .col7 {
    width: 100px;
 }
 #byDateSettings .col5 {
    width: 80px;
    text-align: center;
-}
-#byDateSettings .col6 {
-   width: 100px;
-}
-#byDateSettings .col7 {
-   width: 100px;
 }
 
 .plusminus {
@@ -168,7 +145,6 @@ td:nth-child(6) {
    font-weight: bold;
    font-size: 1.5em;
 }
-
 
 #setup {
    background-color: darkgray;
