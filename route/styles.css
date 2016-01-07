@@ -6,13 +6,39 @@ html, body, h4 {
 #map {
    float: right;
    height: 100%;
-   width: 69%;
+   width: 100%;
 }
 #left-panel {
-   float: left;
+   position: absolute;
+   left: 0;
    height: 100%;
-   width: 30%;
+}
+#left-panel-content {
    padding-left: 5px;
+}
+h3 {
+   height: 40px;
+   line-height: 40px;
+   vertical-align: middle;
+   background-color: #222;
+   color: #fff;
+   padding-left: 5px;
+   height: 40px;
+   margin: 0;
+   width: 100%;
+}
+#arrow {
+   position: absolute;
+   left: 500;
+   height: 40px;
+   line-height: 40px;
+   width: 30px;
+   text-align: center;
+   vertical-align: center;
+   background-color: #000;
+   color: #fff;
+   z-index: 999;
+   font-size: 24px;
 }
 
 #results { 

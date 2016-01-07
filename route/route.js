@@ -20,6 +20,9 @@ var ROUTE = {
       if (!this._map) {
          this._map = new google.maps.Map(document.getElementById("map"), {
             zoom: 4,
+            mapTypeControlOptions: {
+               position: google.maps.ControlPosition.RIGHT_TOP
+            },
             center: new google.maps.LatLng(35.042881, -89.756791) // FHI
          });
       }
@@ -198,5 +201,20 @@ $(document).ready(function() {
             $(this).next().slideDown();
          }
       });
+   });
+
+   $("#left-panel").slideReveal({
+      trigger: $("#arrow"),
+      width: 500,
+      shown: function(slider, trigger) {
+         trigger
+            .removeClass("fa-arrow-circle-right")
+            .addClass("fa-arrow-circle-left");
+      },
+      hidden: function(slider, trigger) {
+         trigger
+            .removeClass("fa-arrow-circle-left")
+            .addClass("fa-arrow-circle-right");
+      }
    });
 });
