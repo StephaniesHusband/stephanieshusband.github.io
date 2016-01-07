@@ -58,7 +58,7 @@ var ROUTE = {
    },
 
    addStop: function() {
-      this.$stops.append("<p class='stop'><input type='text'><a href='#' class='deleteStop'>X</a></p>");
+      this.$stops.append("<p class='stop'>Stop: <input type='text'><a href='#' class='deleteStop'>X</a></p>");
 
       new google.maps.places.Autocomplete($(".stop:last-child input", this.$stops)[0], {
          componentRestrictions: {
