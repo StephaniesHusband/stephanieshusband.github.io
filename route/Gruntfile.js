@@ -17,5 +17,7 @@ module.exports = function(grunt) {
     }
   });
 
+  grunt.loadNpmTasks('grunt-ftp-deploy');
+
   grunt.registerTask('deploy', ['ftp-deploy']);
 };
