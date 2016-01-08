@@ -14,10 +14,19 @@ module.exports = function(grunt) {
         dest: '/route',
         exclusions: ['.*.swp']
       }
+    },
+
+    wiredep: {
+       task: {
+          src: "src/**/*.html"
+       }
     }
   });
 
-  grunt.loadNpmTasks('grunt-ftp-deploy');
+  grunt.loadNpmTasks("grunt-ftp-deploy");
+  grunt.loadNpmTasks("grunt-wiredep");
 
   grunt.registerTask('deploy', ['ftp-deploy']);
+
+  grunt.registerTask("default", ["wiredep"]);
 };

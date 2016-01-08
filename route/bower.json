@@ -1,0 +1,33 @@
+{
+   "name": "route",
+   "description": "",
+   "main": "index.html",
+   "authors": [
+      "StephaniesHusband@gmail.com <StephaniesHusband@gmail.com>"
+   ],
+   "license": "MIT",
+   "homepage": "https://github.com/StephaniesHusband/fedexPOC",
+   "moduleType": [],
+   "private": true,
+   "ignore": [
+      "**/.*",
+      "node_modules",
+      "bower_components",
+      "test",
+      "tests"
+   ],
+   "dependencies": {
+      "jquery": "~2.1.4",
+      "font-awesome": "fontawesome#~4.5.0",
+      "slidereveal": "~1.0.2"
+   },
+
+   "overrides": {
+      "slidereveal": {
+         "main": "dist/jquery.slidereveal.min.js"
+      },
+      "font-awesome": {
+         "main": "css/font-awesome.min.css"
+      }
+   }
+}
