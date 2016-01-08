@@ -3,6 +3,8 @@
 # compiled output
 /dist
 /tmp
+/src/_*
+/src/fonts
 
 # dependencies
 /node_modules

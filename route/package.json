@@ -7,6 +7,7 @@
     "grunt": "^0.4.5"
   },
   "devDependencies": {
+    "grunt-bower-concat": "^0.6.0",
     "grunt-ftp-deploy": "^0.1.10",
     "grunt-wiredep": "^2.0.0"
   },
