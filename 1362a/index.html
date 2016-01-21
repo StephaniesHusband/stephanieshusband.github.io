@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+   <head>
+      <meta charset="utf-8">
+      <title>1632 POC Temperature Trigger</title>
+      <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+      <style>
+         label {
+            font-weight: bold;
+         }
+         #wrapper {
+            width: 50%;
+         }
+         section {
+            padding: 10px;
+            border-bottom: 1px solid lightgray;
+            margin-bottom: 25px;
+            background-color: #eee;
+         }
+      </style>
+      <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+      <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+      <script>
+         $(function() {
+            var myMin = 1;
+            var myMax = 400;
+
+            $("#slider1").slider({
+               range: "min",
+               value: 40,
+               min: myMin,
+               max: myMax,
+               step: 0.1,
+               slide: function(event, ui) {
+                  $("#low1").val(myMin);
+                  $("#high1").val(ui.value);
+               }
+            });
+            $("#slider2").slider({
+               range: "max",
+               value: 60,
+               min: myMin,
+               max: myMax,
+               step: 0.1,
+               slide: function(event, ui) {
+                  $("#low2").val(ui.value);
+                  $("#high2").val(myMax);
+               }
+            });
+            $("#slider3").slider({
+               range: true,
+               min: myMin,
+               max: myMax,
+               step: 0.1,
+               values: [ 25, 75 ],
+               slide: function(event, ui) {
+                  $("#low3").val(ui.values[0]);
+                  $("#high3").val(ui.values[1]);
+               }
+            });
+
+            $("input.min").on("change", function() {
+               var $slider = $(this).parents("section").find(".slider");
+               
+               if ($slider.slider("option", "range") === true) {
+                  $slider.slider("values", 0, +$(this).val());
+               }
+               else {
+                  $slider.slider("value", +$(this).val());
+               }
+            });
+
+            $("input.max").on("change", function() {
+               var $slider = $(this).parents("section").find(".slider")
+               
+               if ($slider.slider("option", "range") === true) {
+                  $slider.slider("values", 1, +$(this).val());
+               }
+               else {
+                  $slider.slider("value", +$(this).val());
+               }
+            });
+         });
+      </script>
+   </head>
+   <body>
+      <div id="wrapper">
+         <section>
+            <label>Low Threshold:</label>
+            <div>
+               Trigger if Below: <input type="text" id="high1" class="min">
+            </div>
+            <div id="slider1" class="slider"></div>
+         </section>
+         <section>
+            <label>High Threshold:</label>
+            <div>
+               Trigger if Above: <input type="text" id="low2" class="max">
+            </div>
+            <div id="slider2" class="slider"></div>
+         </section>
+         <section>
+            <label>Range:</label>
+            <div>
+               Trigger if Below: <input type="text" id="low3" class="min">
+            </div>
+            <div>
+               Trigger if Above: <input type="text" id="high3" class="max">
+            </div>
+            <div id="slider3" class="slider"></div>
+         </section>
+      </div>
+   </body>
+</html>
