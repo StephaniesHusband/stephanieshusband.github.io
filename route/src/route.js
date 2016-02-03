@@ -20,6 +20,7 @@ var ROUTE = {
       if (!this._map) {
          this._map = new google.maps.Map(document.getElementById("map"), {
             zoom: 4,
+            scaleControl: true,
             mapTypeControlOptions: {
                position: google.maps.ControlPosition.RIGHT_TOP
             },
@@ -121,6 +122,55 @@ var ROUTE = {
          map: this._map,
          title: "Lat: " + lat + " Long: " + lng
       });
+   },
+
+   calculateHeading: function(latLng1, latLng2) {
+      /*
+      var latA = latLng1.lat();
+      var lngA = latLng1.lng();
+      var latB = latLng2.lat();
+      var lngB = latLng2.lng();
+      var ra = Math.PI/180;
+      var deg = 180/Math.PI;    
+      var x = lngB - lngA;
+      var y = lngB - lngA;
+
+      var f = 0;
+
+      if (x >= 0 && y >= 0) {
+         y = y * ra; x = x * ra;
+         f = 90 - Math.atan(y / x) * deg;
+
+      } else if (x >= 0 && y <= 0) {
+         y = y * ra; x = x * ra;
+         f = 90 + Math.abs(Math.atan(y / x) * deg);
+
+      } else if (x <= 0 && y <= 0) {
+         y = y * ra; x = x * ra;
+         f = 270 - Math.atan(y / x) * deg;
+
+      } else if (x <= 0 && y >= 0) {
+         y = y * ra; x = x * ra;
+         f = 270 + Math.abs(Math.atan(y / x) * deg);
+      }
+
+      //alert("Angle :" + f + " degree" );
+      return f;*/
+
+      var lat1 = latLng1.lat();
+      var long1 = latLng1.lng();
+      var lat2 = latLng2.lat();
+      var long2 = latLng2.lng();
+
+      var degToRad= Math.PI/180.0;
+      var phi1= lat1 * degToRad;
+      var phi2= lat2 * degToRad;
+      var lam1= long1 * degToRad;
+      var lam2= long2 * degToRad;
+
+      return Math.atan2(Math.sin(lam2-lam1) * Math.cos(phi2),
+         Math.cos(phi1)*Math.sin(phi2) - Math.sin(phi1)*Math.cos(phi2)*Math.cos(lam2-lam1)
+      ) * 180/Math.PI;
    }
 };
 
@@ -153,31 +203,51 @@ $(document).ready(function() {
       }
       $("#waypoints").empty().append(options);
 
+      var op = ROUTE.getDirections().routes[0].overview_path;
+
+      //var ang = ROUTE.calculateHeading(op[0], op[len-1]);
+
+      var ang = google.maps.geometry.spherical.computeHeading(op[0], op[len-1]);
+
+      var sw,ne,se,nw;
+      if (ang >= 0) { // 3 km width
+         sw = google.maps.geometry.spherical.computeOffset(op[0], 1500, ang + 90);
+         se = google.maps.geometry.spherical.computeOffset(op[0], 1500, ang - 90);
+         ne = google.maps.geometry.spherical.computeOffset(op[len-1], 1500, ang - 90);
+         nw = google.maps.geometry.spherical.computeOffset(op[len-1], 1500, ang + 90);
+      }
+      else { 
+         sw = google.maps.geometry.spherical.computeOffset(op[0], 1500, ang - 90);
+         se = google.maps.geometry.spherical.computeOffset(op[0], 1500, ang + 90);
+         ne = google.maps.geometry.spherical.computeOffset(op[len-1], 1500, ang + 90);
+         nw = google.maps.geometry.spherical.computeOffset(op[len-1], 1500, ang - 90);
+      }
+
+      var poly = new google.maps.Polygon({
+         paths: [ sw, nw, ne, se ],
+         strokeColor: '#FF0000',
+         strokeOpacity: 0.8,
+         strokeWeight: 3,
+         fillColor: '#FF0000',
+         fillOpacity: 0.35,
+         map: ROUTE._map
+      });
+
+      $("#angle").html(ang + "&deg;" + "<br> SW: " + sw + "<br> NE: " + ne);
+
       $("#results").show();
    });
 
-   $("#useOrigin").change(function(ev) {
-      var checked = $(this).is(":checked");
+   $("#useOrigin").click(function(ev) {
+      $("#origin").val($("#origin").data("loc"));
 
-      $("#origin").prop("disabled", checked);
-
-      if (checked) {
-         $("#origin").val("Memphis, TN");
-
-         ROUTE.displayRoute();
-      }
+      ROUTE.displayRoute();
    });
 
-   $("#useDest").change(function(ev) {
-      var checked = $(this).is(":checked");
+   $("#useDest").click(function(ev) {
+      $("#destination").val($("#destination").data("loc"));
 
-      $("#destination").prop("disabled", checked);
-
-      if (checked) {
-         $("#destination").val("Dallas, TX");
-
-         ROUTE.displayRoute();
-      }
+      ROUTE.displayRoute();
    });
 
    $("#waypoints").change(function(ev) {

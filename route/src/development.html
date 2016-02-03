@@ -4,7 +4,10 @@
       <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
       <meta charset="utf-8">
       <title>Define Route POC</title>
-      <link rel="stylesheet" href="_bower.css" />
+      <!-- bower:css -->
+      <!-- endbower -->
+
+      <link rel="stylesheet" href="../bower_components/font-awesome/css/font-awesome.min.css">
       <link rel="stylesheet" href="styles.css">
    </head>
    <body>
@@ -40,7 +43,7 @@
             <div id="results">
                <hr>
                <p>This is what we'd store for the route...</p>
-               <p>Angle: <span id="angle"><span></p>
+               <p>Heading: <span id="angle"><span></p>
                <p># Waypoints: <span id="numSteps"></span></p>
                <p>Waypoints:
                   <i>Click on a point to see it on the map.</i>
@@ -51,8 +54,12 @@
       </div>
       <div id="map"></div>
 
-      <script src="_bower.js"></script>
-      <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?client=gme-fedexcorporateservices1&v=3.22&libraries=places"></script>
-      <script src="route.js"></script>
+      <!-- bower:js -->
+      <script src="../bower_components/jquery/dist/jquery.js"></script>
+      <script src="../bower_components/slidereveal/dist/jquery.slidereveal.min.js"></script>
+      <!-- endbower -->
+
+      <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?client=gme-fedexcorporateservices1&v=3.22&libraries=places,geometry"></script>
+      <script type="text/javascript" src="route.js"></script>
    </body>
 </html>

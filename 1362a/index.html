@@ -2,7 +2,7 @@
 <html lang="en">
    <head>
       <meta charset="utf-8">
-      <title>1632 POC Temperature Trigger</title>
+      <title>1362 POC for Trigger Range Controls</title>
       <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
       <style>
          label {
@@ -17,7 +17,25 @@
             margin-bottom: 25px;
             background-color: #eee;
          }
+         .min, .max {
+            width: 40px;
+         }
+         .ui-slider-range {
+            background: #1B465E;
+         }
+         .slider {
+            margin-top: 10px;
+         }
+
+         .ui-slider .ui-slider-handle {
+            border: none;
+            background: transparent url("range-handle.png") 50% 50% repeat-x;
+            width: 38px;
+            height: 34px;
+            margin-top: -4px;
+         }
       </style>
+
       <script src="//code.jquery.com/jquery-1.10.2.js"></script>
       <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
       <script>
@@ -32,8 +50,10 @@
                max: myMax,
                step: 0.1,
                slide: function(event, ui) {
-                  $("#low1").val(myMin);
                   $("#high1").val(ui.value);
+               },
+               create: function(event, ui) {
+                  $("#high1").val($(this).slider("value"));
                }
             });
             $("#slider2").slider({
@@ -44,7 +64,9 @@
                step: 0.1,
                slide: function(event, ui) {
                   $("#low2").val(ui.value);
-                  $("#high2").val(myMax);
+               },
+               create: function(event, ui) {
+                  $("#low2").val($(this).slider("value"));
                }
             });
             $("#slider3").slider({
@@ -56,6 +78,10 @@
                slide: function(event, ui) {
                   $("#low3").val(ui.values[0]);
                   $("#high3").val(ui.values[1]);
+               },
+               create: function(event, ui) {
+                  $("#low3").val($(this).slider("values", 0));
+                  $("#high3").val($(this).slider("values", 1));
                }
             });
 
@@ -88,24 +114,24 @@
          <section>
             <label>Low Threshold:</label>
             <div>
-               Trigger if Below: <input type="text" id="high1" class="min">
+               Trigger if Below: <input type="text" id="high1" class="min" maxlength="5">&deg;F
             </div>
             <div id="slider1" class="slider"></div>
          </section>
          <section>
             <label>High Threshold:</label>
             <div>
-               Trigger if Above: <input type="text" id="low2" class="max">
+               Trigger if Above: <input type="text" id="low2" class="max" maxlength="5">&deg;F
             </div>
             <div id="slider2" class="slider"></div>
          </section>
          <section>
             <label>Range:</label>
             <div>
-               Trigger if Below: <input type="text" id="low3" class="min">
+               Trigger if Below: <input type="text" id="low3" class="min" maxlength="5">&deg;F
             </div>
             <div>
-               Trigger if Above: <input type="text" id="high3" class="max">
+               Trigger if Above: <input type="text" id="high3" class="max" maxlength="5">&deg;F
             </div>
             <div id="slider3" class="slider"></div>
          </section>
