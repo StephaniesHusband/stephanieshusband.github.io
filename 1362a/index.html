@@ -29,10 +29,12 @@
 
          .ui-slider .ui-slider-handle {
             border: none;
+            outline: none;
             background: transparent url("range-handle.png") 50% 50% repeat-x;
             width: 38px;
             height: 34px;
             margin-top: -4px;
+            margin-left: -18px;
          }
       </style>
 
@@ -44,7 +46,7 @@
             var myMax = 400;
 
             $("#slider1").slider({
-               range: "min",
+               range: "max",
                value: 40,
                min: myMin,
                max: myMax,
@@ -57,7 +59,7 @@
                }
             });
             $("#slider2").slider({
-               range: "max",
+               range: "min",
                value: 60,
                min: myMin,
                max: myMax,
