@@ -16,13 +16,14 @@ $(document).ready(function() {
       },
       numOfWorkers: (navigator.hardwareConcurrency ? navigator.hardwareConcurrency : 4),
       decoder: {
-         readers: [ "code_128_reader" ]
+         readers: [ "upc_reader", "code_128_reader" ]
       },
+      multiple: false,
       locate: true
    };
 
-   // The fallback to the file API requires a different inputStream option. 
-   // The rest is the same 
+   // The fallback to the file API requires a different inputStream option.
+   // The rest is the same
    var fileConfig = $.extend({}, liveStreamConfig, {
       inputStream: {
          size: 800
@@ -30,9 +31,28 @@ $(document).ready(function() {
    });
 
    // Start the live stream scanner when the modal opens
-   $('#livestream_scanner').on('shown.bs.modal', function (e) {
+   $('#livestream_scanner').on('shown.bs.modal', function(e) {
+
+      var fnDetected = function(data) {
+         if (data.codeResult.code){
+            $($(e.relatedTarget).data("input")).val(data.codeResult.code);
+
+            Quagga.offDetected(fnDetected);
+
+            Quagga.stop();
+
+            setTimeout(function() {
+               $('#livestream_scanner').modal('hide');
+            }, 1000);
+         }
+      };
+
+      // Once a barcode had been read successfully, stop Quagga and close the modal after a second to let the user notice
+      // where the barcode had actually been found.
+      Quagga.onDetected(fnDetected);
+
       Quagga.init(
-         liveStreamConfig, 
+         liveStreamConfig,
          function(err) {
             if (err) {
                $('#livestream_scanner .modal-body .error').html('<div class="alert alert-danger"><strong><i class="fa fa-exclamation-triangle"></i> '+err.name+'</strong>: '+err.message+'</div>');
@@ -44,7 +64,7 @@ $(document).ready(function() {
       );
    });
 
-   // Make sure, QuaggaJS draws frames an lines around possible barcodes on the live stream
+   // Draw frames around possible barcodes on the live stream
    Quagga.onProcessed(function(result) {
       var drawingCtx = Quagga.canvas.ctx.overlay;
       var drawingCanvas = Quagga.canvas.dom.overlay;
@@ -53,7 +73,7 @@ $(document).ready(function() {
          if (result.boxes) {
             drawingCtx.clearRect(0, 0, parseInt(drawingCanvas.getAttribute("width")), parseInt(drawingCanvas.getAttribute("height")));
 
-            result.boxes.filter(function (box) {
+            result.boxes.filter(function(box) {
                return box !== result.box;
             }).forEach(function (box) {
                Quagga.ImageDebug.drawPath(box, {x: 0, y: 1}, drawingCtx, {color: "green", lineWidth: 2});
@@ -64,30 +84,20 @@ $(document).ready(function() {
             Quagga.ImageDebug.drawPath(result.box, {x: 0, y: 1}, drawingCtx, {color: "#00F", lineWidth: 2});
          }
 
+         // Draw a "match" line across barcode if get a hit
          if (result.codeResult && result.codeResult.code) {
             Quagga.ImageDebug.drawPath(result.line, {x: 'x', y: 'y'}, drawingCtx, {color: 'red', lineWidth: 3});
          }
       }
    });
 
-   // Once a barcode had been read successfully, stop Quagga and close the modal after a second to let the user notice where
-   // the barcode had actually been found.
-   Quagga.onDetected(function(result) {    		
-      if (result.codeResult.code){
-         $('#scanner_input1').val(result.codeResult.code); // TODO need some way to tell quagga what control coming from
-
-         Quagga.stop();	
-
-         setTimeout(function() {
-            $('#livestream_scanner').modal('hide');
-         }, 1000);			
-      }
-   });
-
    // Stop quagga in any case, when the modal is closed
    $('#livestream_scanner').on('hide.bs.modal', function(){
       if (Quagga){
-         Quagga.stop();	
+         try {
+            Quagga.stop();
+         }
+         catch(e) { }
       }
    });
 

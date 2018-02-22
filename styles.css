@@ -22,3 +22,7 @@ canvas.drawingBuffer {
    left: 0;
    top: 0;
 }
+
+.modal-footer {
+   justify-content: space-between;
+}
