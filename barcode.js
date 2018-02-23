@@ -22,13 +22,14 @@ $(document).ready(function() {
       locate: true
    };
 
-   // The fallback to the file API requires a different inputStream option.
-   // The rest is the same
+   // The fallback to the file API requires a different inputStream option. The rest is the same.
    var fileConfig = $.extend({}, liveStreamConfig, {
       inputStream: {
          size: 800
       }
    });
+
+   //----------------------------------------------------------------------------------------------
 
    // Start the live stream scanner when the modal opens
    $('#livestream_scanner').on('shown.bs.modal', function(e) {
@@ -76,17 +77,19 @@ $(document).ready(function() {
             result.boxes.filter(function(box) {
                return box !== result.box;
             }).forEach(function (box) {
+               // potential barcode
                Quagga.ImageDebug.drawPath(box, {x: 0, y: 1}, drawingCtx, {color: "green", lineWidth: 2});
             });
          }
 
          if (result.box) {
-            Quagga.ImageDebug.drawPath(result.box, {x: 0, y: 1}, drawingCtx, {color: "#00F", lineWidth: 2});
+            // a barcode hit!
+            Quagga.ImageDebug.drawPath(result.box, {x: 0, y: 1}, drawingCtx, {color: "blue", lineWidth: 2});
          }
 
          // Draw a "match" line across barcode if get a hit
          if (result.codeResult && result.codeResult.code) {
-            Quagga.ImageDebug.drawPath(result.line, {x: 'x', y: 'y'}, drawingCtx, {color: 'red', lineWidth: 3});
+            Quagga.ImageDebug.drawPath(result.line, {x: 'x', y: 'y'}, drawingCtx, {color: "red", lineWidth: 3});
          }
       }
    });
