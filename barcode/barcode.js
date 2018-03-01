@@ -114,4 +114,16 @@ $(document).ready(function() {
          });
       }
    });
+
+   Vue.component("scan-field", {
+      template: "scan-field",
+      props: [ "field" ]
+   });
+
+   var vm = new Vue({
+      el: "#app"
+   });
+
+   // Create any tooltips
+   $("[data-toggle='tooltip']").tooltip();
 });

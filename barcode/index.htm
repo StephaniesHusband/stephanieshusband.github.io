@@ -9,12 +9,26 @@
    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-   <div class="container">
+   <template id="scan-field">
+      <div class="form-group form-row">
+         <div class="col">
+            <label>{{field.label}}:</label>
+            <div class="input-group">
+               <input :id="field.id" class="form-control" :placeholder="field.placeholder" type="text" /> 
+               <div class="input-group-append"> 
+                  <button class="btn" type="button" data-toggle="modal" data-target="#livestream_scanner" :data-input="field.id">
+                     <i class="fa fa-barcode"></i>
+                  </button> 
+               </div>
+            </div>
+         </div>
+      </div>
+   </template>
+   <div id="app" class="container">
       <form>
          <div class="form-group form-row">
             <div class="col">
                <label>Device ID:</label>
-               <a href="#" class="badge badge-pill badge-info">What's this?</a>
                <div class="input-group">
                   <input id="deviceId" class="form-control" placeholder="Enter or Scan Device ID" type="text" /> 
                   <div class="input-group-append"> 
@@ -66,6 +80,7 @@
 
    <script src="https://unpkg.com/jquery"></script>
    <script src="https://unpkg.com/quagga"></script>
+   <script src="https://unpkg.com/vue"></script>
    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
    <script src="barcode.js"></script>
 </body>
