@@ -26,6 +26,8 @@
    </template>
 
    <div id="app" class="container">
+      <h1>Barcode POC</h1>
+
       <form>
          <scan-field v-for="field in fields" :field="field" :key="field.id"></scan-field>
       </form>
