@@ -24,36 +24,12 @@
          </div>
       </div>
    </template>
+
    <div id="app" class="container">
       <form>
-         <div class="form-group form-row">
-            <div class="col">
-               <label>Device ID:</label>
-               <div class="input-group">
-                  <input id="deviceId" class="form-control" placeholder="Enter or Scan Device ID" type="text" /> 
-                  <div class="input-group-append"> 
-                     <button class="btn" type="button" data-toggle="modal" data-target="#livestream_scanner" data-input="#deviceId">
-                        <i class="fa fa-barcode"></i>
-                     </button> 
-                  </div>
-               </div>
-            </div>
-         </div>
-         <div class="form-group form-row">
-            <div class="col">
-               <label>ASP #:</label>
-               <a href="#" class="badge badge-pill badge-info">What's this?</a>
-               <div class="input-group">
-                  <input id="aspNumber" class="form-control" placeholder="Enter or Scan ASP #" type="text" /> 
-                  <div class="input-group-append"> 
-                     <button class="btn" type="button" data-toggle="modal" data-target="#livestream_scanner" data-input="#aspNumber">
-                        <i class="fa fa-barcode"></i>
-                     </button> 
-                  </div>
-               </div>
-            </div>
-         </div>
+         <scan-field v-for="field in fields" :field="field" :key="field.id"></scan-field>
       </form>
+
       <div class="modal" id="livestream_scanner">
          <div class="modal-dialog">
             <div class="modal-content">
@@ -78,8 +54,8 @@
       </div>
    </div>
 
-   <script src="https://unpkg.com/jquery"></script>
    <script src="https://unpkg.com/quagga"></script>
+   <script src="https://unpkg.com/jquery"></script>
    <script src="https://unpkg.com/vue"></script>
    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
    <script src="barcode.js"></script>
