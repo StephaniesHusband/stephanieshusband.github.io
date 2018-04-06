@@ -4,17 +4,18 @@ function displaySize() {
    $('#size').html($win.width() + " x " + $win.height() + " " + mobileMode);
 }
 
-$(document).ready(function(e) {
-   $("#mode").html("Go to List");
-   $("#mode").click(function($el) {
-      var isMapMode = $("#monitor-page-wrapper").toggleClass("map-mode").hasClass("map-mode");
-      console.log(isMapMode);
-      $("#mode").html("Go to " + (isMapMode ? "List" : "Map"));
-   });
-
+$(window).resize(function() {
    displaySize();
 });
 
-$(window).resize(function() {
+$(document).ready(function() {
+   $("#mode").html("Go to List");
+
    displaySize();
+
+   $("#mode").click(function($el) {
+      var isMapMode = $("#monitor-page-wrapper").toggleClass("map-mode").hasClass("map-mode");
+
+      $("#mode").html("Go to " + (isMapMode ? "List" : "Map"));
+   });
 });

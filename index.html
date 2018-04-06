@@ -3,15 +3,15 @@
 <head>
    <meta charset="UTF-8">
    <title>Monitor POC</title>
-   <link rel="stylesheet" href="css/styles.css">
+   <link rel="stylesheet" href="css/base.css">
+   <link rel="stylesheet" href="css/monitor.css">
 </head>
 <body>
-   <div id="size"></div>
    <div id="monitor-page-wrapper" class="module map-mode">
       <h2><label>Devices &amp; Journeys</label><button id="mode">Mode</button></h2>
       <div class="module-inner">
-         <div id="mode-settings">
-            <div class="header">
+         <div id="mode-settings" class="mode-settings">
+            <div class="mode-header">
                <div class="searchbox_wrapper">
                   <div>
                      <input class="textbox" placeholder="Search">
@@ -27,38 +27,39 @@
                      <input type="radio" name="type" value="j">Journeys
                   </label>
                </div>
-               <div id="filter-dropdown" class="dropdown" style="display:flex;align-items:center;justify-content: center;">2 Filters Applied <span style="font-size: 2em;">&rtrif;</span></div>
-               <div id="pagination-row">
-                  <div>
-                     Displaying <select>
-                        <option value="25">25</option>
-                        <option value="50">50</option>
-                        <option value="100">100</option>
-                        <option value="200">200</option>
-                        <option value="300">300</option>
-                        <option value="500">500</option>
-                     </select> out of 891 results
-                  </div>
+               <div id="filter-dropdown" class="dropdown">2 Filters Applied <span style="font-size: 2em;">&rtrif;</span></div>
+               <div id="pagination-results">
+                  <label>Displaying <span id="page-window">1-100</span> out of<span id="total"> 891 results</span></label>
                   <a href="#">VIEW ALL</a>
                </div>
             </div>
-            <div id="placard-list">
+            <div id="placard-list" class="placard-list">
                <ul>
                   <li class="placard">placard1</li>
                   <li class="placard">placard2</li>
                   <li class="placard">placard3</li>
                   <li class="placard">placard4</li>
                   <li class="placard">placard5</li>
-                  <li class="placard">placard6</li>
                </ul>
             </div>
             <div class="pagination-nav">
-               &Lt; PREVIOUS 1 2 3...8 NEXT &Gt;
+               <div class="pages">&Lt; &lt; 1 2 3...8 &gt; &Gt;</div>
+               <div class="page-size">
+                  <label>Page size:</label>
+                  <select>
+                     <option value="25">25</option>
+                     <option value="50">50</option>
+                     <option value="100">100</option>
+                     <option value="200">200</option>
+                     <option value="300">300</option>
+                     <option value="500">500</option>
+                  </select>
+               </div>
             </div>
          </div>
-         <div id="theMap" style="text-align:center;background:lightblue">I'm a google map</div>
+         <div id="theMap">I'm a google map</div>
          <div id="theList">
-            <table style="width:100%">
+            <table>
                <tr>
                   <th>column 1</th>
                   <th>column 2</th>
@@ -111,14 +112,26 @@
                </tr>
             </table>
             <div class="pagination-nav">
-               &Lt; PREVIOUS 1 2 3...8 NEXT &Gt;
+               <div class="pages">&Lt; &lt; 1 2 3...8 &gt; &Gt;</div>
+               <div class="page-size">
+                  <label>Page size:</label>
+                  <select>
+                     <option value="25">25</option>
+                     <option value="50">50</option>
+                     <option value="100">100</option>
+                     <option value="200">200</option>
+                     <option value="300">300</option>
+                     <option value="500">500</option>
+                  </select>
+               </div>
             </div>
          </div>
       </div>
-      <div id="footer" style="background:lightgray;text-align:center;">
+      <div id="footer">
          this is the footer | this is footer | this footer | footer
       </div>
    </div>
+   <div id="size"></div>
    <script src="//unpkg.com/jquery"></script>
    <script src="index.js"></script>
 </body>

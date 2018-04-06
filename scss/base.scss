@@ -1,0 +1,113 @@
+//===============================================================
+// Purely setup type css, not pertinent to map/list manipulation.
+//===============================================================
+
+$redesign-blue: #1F7DA4;
+
+html { background-color: yellow;}
+
+* { // reset
+   margin: 0;
+   padding: 0;
+   box-sizing: border-box;
+}
+body {
+   font-family: "Arial Narrow", Arial, Helvetica, sans-serif;
+   height: 100vh;
+   background: orange;
+   display: flex;
+   flex-direction: column;
+}
+a {
+   text-decoration: none;
+   color: $redesign_blue;
+}
+.textbox {
+   padding: 0;
+   margin: 0;
+   height: 30px; 
+}
+.inline {
+   display: inline-block;
+}
+.radio {
+   cursor: pointer;
+}
+.button {
+   cursor: pointer;
+   color: white;
+   height: 30px;
+   line-height: 30px;
+   min-width: 30px;
+   width: 30px;
+   background: $redesign_blue;
+   text-align: center;
+   font-size: 1.5em;
+}
+.dropdown {
+   cursor: pointer;
+   height: 30px;
+   color: $redesign_blue;
+   background: lightgray;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   width: auto; 
+   max-width: 130px;
+   padding: 0 5px;
+}
+.module {
+   background: white;
+
+   h2 {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 35px;
+      background: black;
+      color: white;
+      vertical-align: middle;
+      padding: 5px 0 5px 10px;
+      text-transform: uppercase;
+      font-size: .8em;
+   }
+}
+table {
+   border: 1px solid gray;
+   tr { height: 30px; } 
+   tr:nth-child(even) { background-color: lightgray; }
+   width: 100%;
+}
+
+#theMap {
+   text-align: center;
+   background-color: lightblue;
+   height: 100%;
+}
+
+.searchbox_wrapper {
+   display: flex;
+
+   & > div:first-child {
+      flex: 1; // grow as wide as you can
+
+      display: flex;
+      margin-right: 5px;
+
+      input {
+         flex: 1; // grow as wide as you can
+         padding-left: 5px;
+      }
+   }
+}
+
+#filter-dropdown {
+   display:flex;
+   align-items: center;
+   justify-content: center;
+}
+
+#footer {
+   background: lightgray;
+   text-align: center;
+}

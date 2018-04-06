@@ -1,0 +1,185 @@
+//==================================
+// Strictly monitor manipulation css
+//==================================
+
+#monitor-page-wrapper {
+   display: flex;
+   flex-direction: column;
+
+   // List mode & Global settings
+   #pagination-results {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+   }
+
+   #radio-group-type {
+      display: inline-block;
+   }
+
+   #theMap {
+      display: none;
+      min-height: 500px;
+   }
+
+   .pagination-nav {
+      display: flex;
+      justify-content: space-between;
+      flex: 0 0 auto;
+   }
+
+   .module-inner {
+      max-height: 500px;
+      display: flex;
+      flex-direction: column;
+      position: unset;
+   }
+
+   // mode-settings is the left side bar
+   .mode-settings {
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+
+      & > .pagination-nav {
+         display: none;
+      }
+   }
+
+   .mode-header {
+      width: 100%;
+      display: flex;
+      flex-flow: row wrap;
+      justify-content: space-between;
+      align-items: center;
+      padding: 5px;
+
+      & > * {
+         width: 33%;
+      }
+   }
+
+   .placard-list {
+      display: none;
+      flex-direction: column;
+      overflow-y: scroll;
+      flex-grow: 1;
+
+      ul {
+         list-style-type: none;
+      }
+   }
+
+   .placard {
+      min-height: 100px;
+      background: white;
+      border-bottom: 1px solid lightgray;
+      &:first-child {
+         border-top: 1px solid lightgray;
+      }
+   }
+
+   &.map-mode {
+      .module-inner {
+         flex-direction: row;
+
+         & > .pagination-nav {
+            display: none;
+         }
+      }
+
+      #theList {
+         display: none;
+      }
+      #theMap {
+         display: block;
+      }
+
+      .mode-settings {
+         min-width: 255px;
+         display: flex; 
+         flex-direction: column;
+         flex: 0 0 30%;
+
+         & > .pagination-nav {
+            display: flex;
+         }
+      }
+
+      .mode-header {
+         width: auto;
+         flex: 0 0 125px;
+         flex-flow: column nowrap;
+         align-items: stretch;
+
+         & > * {
+            width: auto;
+         }
+      }
+
+      .placard-list {
+         display: block;
+      }
+
+      #theMap {
+         flex: 3 1;
+      }
+   }
+}
+
+/* simulate mobile */
+@media all and (max-width: 499px) {
+   #monitor-page-wrapper {
+      // first define what list mode looks like
+      #theMap,
+      #theList {
+         display: none;
+      }
+      .placard-list {
+         display: block;
+      }
+
+      .pagination-nav {
+         display: flex;
+      }
+
+      .mode-settings {
+         flex-direction: column;
+
+         & > .pagination-nav {
+            display: flex;
+         }
+      }
+
+      .mode-header {
+         flex: 0 0 125px;
+         flex-flow: column nowrap;
+         align-items: stretch;
+
+         & > * {
+            width: auto;
+         }
+      }
+
+      .footer {
+         display: block;
+      }
+
+      // map mode
+      &.map-mode {
+         #theMap {
+            display: block;
+         } 
+
+         .mode-settings,
+         .placard-list {
+            display: none;
+         }
+
+         // both
+         .pagination-nav {
+            display: none;
+         }
+      }
+   }
+}
