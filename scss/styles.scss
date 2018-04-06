@@ -1,0 +1,250 @@
+$redesign-blue: #1F7DA4;
+
+html { background-color: yellow;}
+
+* { // reset
+   margin: 0;
+   padding: 0;
+   box-sizing: border-box;
+}
+body {
+   font-family: Arial, Helvetica, sans-serif;
+   height: 100vh;
+   background: orange;
+   display: flex;
+   flex-direction: column;
+}
+a {
+   text-decoration: none;
+   color: $redesign_blue;
+}
+.textbox {
+   padding: 0;
+   margin: 0;
+   height: 30px; 
+}
+.inline {
+   display: inline-block;
+}
+.radio {
+   cursor: pointer;
+}
+.button {
+   cursor: pointer;
+   color: white;
+   height: 30px;
+   line-height: 30px;
+   min-width: 30px;
+   width: 30px;
+   background: $redesign_blue;
+   text-align: center;
+   font-size: 1.5em;
+}
+.dropdown {
+   cursor: pointer;
+   height: 30px;
+   color: $redesign_blue;
+   background: lightgray;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   width: auto; 
+   max-width: 130px;
+   padding: 0 5px;
+}
+.module {
+   background: white;
+
+   h2 {
+      height: 30px;
+      line-height: 30px;
+      background: black;
+      color: white;
+      font-size: 0.8em;
+      vertical-align: middle;
+      padding: 5px 0 5px 10px;
+      display: flex;
+      justify-content: space-between;
+      text-transform: uppercase;
+   }
+}
+table {
+   border: 1px solid gray;
+   tr { height: 30px; } 
+   tr:nth-child(even) { background-color: lightgray; }
+}
+
+.searchbox_wrapper {
+   display: flex;
+
+   & > div:first-child {
+      flex: 1; // grow as wide as you can
+
+      display: flex;
+      margin-right: 5px;
+
+      input {
+         flex: 1; // grow as wide as you can
+         padding-left: 5px;
+      }
+   }
+}
+
+//====================================================
+
+#monitor-page-wrapper {
+   display: flex;
+   flex-direction: column;
+
+   // List mode & Global settings
+   #pagination-row {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      flex: 0.7;
+   }
+
+   #radio-group-type {
+      display: inline-block;
+   }
+
+   #theMap {
+      display: none;
+      min-height: 500px;
+   }
+
+   .pagination-nav {
+      font-size: .8em;
+      text-align: center;
+   }
+
+   .module-inner {
+      max-height: 500px;
+      display: flex;
+      flex-direction: column;
+      position: unset;
+
+      > .pagination-nav {
+         display: block;
+      }
+   }
+
+   // mode-settings is the left side bar
+   #mode-settings {
+      display: flex;
+
+      .header {
+         display: flex;
+         flex-direction: row;
+         justify-content: space-between;
+         align-items: center;
+         font-size: .75em;
+         margin: 5px;
+      }
+
+      .pagination-nav {
+         display: none;
+      }
+   }
+
+   #placard-list {
+      display: none;
+      flex-direction: column;
+      overflow-y: scroll;
+      flex-grow: 1;
+
+      ul {
+         list-style-type: none;
+
+         .placard {
+            min-height: 100px;
+            background: white;
+            border-bottom: 1px solid lightgray;
+            &:first-child {
+               border-top: 1px solid lightgray;
+            }
+         }
+      }
+   }
+
+   &.map-mode {
+      .module-inner {
+         flex-direction: row;
+      }
+
+      #theList {
+         display: none;
+      }
+      #theMap {
+         display: block;
+      }
+
+      #mode-settings {
+         min-width: 255px;
+         display: flex; 
+         flex-direction: column;
+         flex: 1 0 30%;
+
+         .header {
+            flex: 0 0 125px;
+            flex-direction: column;
+            align-items: stretch;
+         }
+
+         .pagination-nav {
+            display: block;
+         }
+      }
+      #placard-list {
+         display: block;
+      }
+      #theMap {
+         background: orange;
+         flex: 3 1;
+      }
+   }
+}
+
+/* simulate mobile */
+@media all and (max-width: 499px) {
+   #monitor-page-wrapper {
+      // first define what list mode looks like
+      #theMap,
+      #theList {
+         display: none;
+      }
+      #placard-list {
+         display: block;
+      }
+
+      #mode-settings {
+         flex-direction: column;
+
+         .header {
+            flex: 0 0 125px;
+            flex-direction: column;
+            align-items: stretch;
+         }
+
+         .pagination-nav {
+            display: block;
+         }
+
+         .footer {
+            display: block;
+         }
+      }
+
+      // map mode
+      &.map-mode {
+         #theMap {
+            display: block;
+         } 
+         #mode-settings,
+         #placard-list {
+            display: none;
+         }
+      }
+   }
+}

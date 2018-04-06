@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <title>Monitor POC</title>
+   <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+   <div id="size"></div>
+   <div id="monitor-page-wrapper" class="module map-mode">
+      <h2><label>Devices &amp; Journeys</label><button id="mode">Mode</button></h2>
+      <div class="module-inner">
+         <div id="mode-settings">
+            <div class="header">
+               <div class="searchbox_wrapper">
+                  <div>
+                     <input class="textbox" placeholder="Search">
+                     <div class="button">?</div>
+                  </div>
+                  <div class="button" >&udarr;</div>
+               </div>
+               <div id="type-radio-group">
+                  <label class="radio inline">
+                     <input type="radio" name="type" value="d" checked>Devices
+                  </label>
+                  <label class="radio inline">
+                     <input type="radio" name="type" value="j">Journeys
+                  </label>
+               </div>
+               <div id="filter-dropdown" class="dropdown" style="display:flex;align-items:center;justify-content: center;">2 Filters Applied <span style="font-size: 2em;">&rtrif;</span></div>
+               <div id="pagination-row">
+                  <div>
+                     Displaying <select>
+                        <option value="25">25</option>
+                        <option value="50">50</option>
+                        <option value="100">100</option>
+                        <option value="200">200</option>
+                        <option value="300">300</option>
+                        <option value="500">500</option>
+                     </select> out of 891 results
+                  </div>
+                  <a href="#">VIEW ALL</a>
+               </div>
+            </div>
+            <div id="placard-list">
+               <ul>
+                  <li class="placard">placard1</li>
+                  <li class="placard">placard2</li>
+                  <li class="placard">placard3</li>
+                  <li class="placard">placard4</li>
+                  <li class="placard">placard5</li>
+                  <li class="placard">placard6</li>
+               </ul>
+            </div>
+            <div class="pagination-nav">
+               &Lt; PREVIOUS 1 2 3...8 NEXT &Gt;
+            </div>
+         </div>
+         <div id="theMap" style="text-align:center;background:lightblue">I'm a google map</div>
+         <div id="theList">
+            <table style="width:100%">
+               <tr>
+                  <th>column 1</th>
+                  <th>column 2</th>
+                  <th>column 3</th>
+               </tr>
+               <tr>
+                  <td>data1</td>
+                  <td>data2</td>
+                  <td>data3</td>
+               </tr>
+               <tr>
+                  <td>data1</td>
+                  <td>data2</td>
+                  <td>data3</td>
+               </tr>
+               <tr>
+                  <td>data1</td>
+                  <td>data2</td>
+                  <td>data3</td>
+               </tr>
+               <tr>
+                  <td>data1</td>
+                  <td>data2</td>
+                  <td>data3</td>
+               </tr>
+               <tr>
+                  <td>data1</td>
+                  <td>data2</td>
+                  <td>data3</td>
+               </tr>
+               <tr>
+                  <td>data1</td>
+                  <td>data2</td>
+                  <td>data3</td>
+               </tr>
+               <tr>
+                  <td>data1</td>
+                  <td>data2</td>
+                  <td>data3</td>
+               </tr>
+               <tr>
+                  <td>data1</td>
+                  <td>data2</td>
+                  <td>data3</td>
+               </tr>
+               <tr>
+                  <td>data1</td>
+                  <td>data2</td>
+                  <td>data3</td>
+               </tr>
+            </table>
+            <div class="pagination-nav">
+               &Lt; PREVIOUS 1 2 3...8 NEXT &Gt;
+            </div>
+         </div>
+      </div>
+      <div id="footer" style="background:lightgray;text-align:center;">
+         this is the footer | this is footer | this footer | footer
+      </div>
+   </div>
+   <script src="//unpkg.com/jquery"></script>
+   <script src="index.js"></script>
+</body>
+</html>
