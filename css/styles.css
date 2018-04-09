@@ -1,3 +1,4 @@
+@charset "UTF-8";
 html {
   background-color: yellow; }
 
@@ -96,10 +97,33 @@ table {
   background: lightgray;
   text-align: center; }
 
+#radio-group-type {
+  display: inline-block; }
+
 #monitor-page-wrapper {
   display: flex;
   flex-direction: column;
-  height: 100vh; }
+  height: 100vh;
+  /*
+    * monitor-page-wrapper (100vh) flex:column
+    * ├-header
+    * ├-module-inner
+    * | ├-mode-settings
+    * | | ├-mode-header
+    * | | | ├-mode-controls
+    * | | | | ├-searchbox_wrapper
+    * | | | | ├-type-radio-group
+    * | | | | ├-dropdown_filters
+    * | | | | └-dropdown_actions
+    * | | | └-pagination-results
+    * | | ├-placard-list
+    * | | └-pagination-nav (#1)
+    * | ├-theMap
+    * | ├-theList
+    * | | └-table
+    * | └-pagination-nav (#2)
+    * └-footer
+    */ }
   #monitor-page-wrapper .pagination-results {
     display: flex;
     justify-content: space-between;
@@ -107,23 +131,17 @@ table {
     max-width: 300px; }
     #monitor-page-wrapper .pagination-results .separator {
       display: block; }
-    #monitor-page-wrapper .pagination-results > * {
-      flex: 0 auto; }
-  #monitor-page-wrapper #radio-group-type {
-    display: inline-block; }
   #monitor-page-wrapper #theMap {
     display: none;
-    min-height: 300px;
     height: 100%; }
   #monitor-page-wrapper .pagination-nav {
     display: flex;
     justify-content: space-between;
-    flex: 0 0 auto; }
+    flex-shrink: 0; }
   #monitor-page-wrapper .module-inner {
-    height: 100vh;
     display: flex;
     flex-direction: column;
-    position: unset; }
+    flex: 1; }
   #monitor-page-wrapper .mode-settings {
     display: flex;
     justify-content: flex-start;
@@ -146,7 +164,6 @@ table {
     justify-content: flex-start;
     align-items: center; }
     #monitor-page-wrapper .mode-controls > * {
-      flex: 0 0 auto;
       margin-right: 10px; }
   #monitor-page-wrapper .dropdown_actions {
     display: flex;
@@ -157,7 +174,8 @@ table {
     display: none;
     flex-direction: column;
     overflow-y: scroll;
-    flex-grow: 1; }
+    height: 100%;
+    flex: 1; }
     #monitor-page-wrapper .placard-list ul {
       list-style-type: none; }
   #monitor-page-wrapper .button_placard-sort {
@@ -198,10 +216,8 @@ table {
     flex-direction: column;
     align-items: stretch;
     justify-content: space-between; }
-    #monitor-page-wrapper.map-mode .mode-controls > * {
-      width: auto; }
   #monitor-page-wrapper.map-mode .placard-list {
-    display: block; }
+    display: flex; }
   #monitor-page-wrapper.map-mode #theMap {
     flex: 3 1 auto; }
 
@@ -211,20 +227,25 @@ table {
   #monitor-page-wrapper #theList {
     display: none; }
   #monitor-page-wrapper .placard-list {
-    display: block; }
+    display: flex; }
   #monitor-page-wrapper .button_placard-sort {
     display: block; }
-  #monitor-page-wrapper .pagination-results .separator {
-    display: block; }
-  #monitor-page-wrapper .pagination-nav {
-    display: flex; }
+  #monitor-page-wrapper .pagination-results {
+    max-width: 100%; }
+    #monitor-page-wrapper .pagination-results .separator {
+      display: none; }
+  #monitor-page-wrapper .module-inner {
+    flex-direction: row; }
+    #monitor-page-wrapper .module-inner > .pagination-nav {
+      display: none; }
   #monitor-page-wrapper .mode-settings {
     flex-direction: column;
-    flex: 0 0 auto; }
+    flex: 0 0 auto;
+    /*.mode-header {
+            flex: 0 0 auto;
+         }*/ }
     #monitor-page-wrapper .mode-settings > .pagination-nav {
       display: flex; }
-    #monitor-page-wrapper .mode-settings .mode-header {
-      flex: 0 0 auto; }
   #monitor-page-wrapper .dropdown_actions {
     display: none; }
   #monitor-page-wrapper .mode-controls {
@@ -236,16 +257,14 @@ table {
     display: block; }
   #monitor-page-wrapper.map-mode #theMap {
     display: block; }
-  #monitor-page-wrapper.map-mode .pagination-results .separator {
-    display: block; }
   #monitor-page-wrapper.map-mode .module-inner {
     flex-direction: column; }
-    #monitor-page-wrapper.map-mode .module-inner .pagination-nav {
-      display: none; }
+    #monitor-page-wrapper.map-mode .module-inner > .pagination-nav {
+      display: flex; }
   #monitor-page-wrapper.map-mode .mode-settings {
     flex-direction: column;
     flex-basis: auto; }
+    #monitor-page-wrapper.map-mode .mode-settings > .pagination-nav {
+      display: none; }
   #monitor-page-wrapper.map-mode .placard-list {
-    display: none; }
-  #monitor-page-wrapper.map-mode .pagination-nav {
     display: none; } }
