@@ -53,11 +53,15 @@
 
    .mode-header {
       width: 100%;
-      height: 68px;
+      min-height: 68px;
       display: flex;
       flex-direction: column;
       justify-content: stretch;
       padding: 5px;
+
+      & > * {
+         flex: 1 0 auto;
+      }
    }
 
    .mode-controls {
@@ -143,10 +147,10 @@
          & > .pagination-nav {
             display: flex;
          }
-      }
 
-      .mode-header {
-         height: 235px;
+         .mode-header {
+            flex: 0 0 auto;
+         }
       }
 
       .dropdown_actions {
@@ -204,6 +208,10 @@
          & > .pagination-nav {
             display: flex;
          }
+
+         .mode-header {
+            flex: 0 0 auto;
+         }
       }
 
       .dropdown_actions {
@@ -229,7 +237,18 @@
             display: block;
          } 
 
-         .mode-settings,
+         .module-inner {
+            flex-direction: column;
+
+            .pagination-nav {
+               display: none;
+            }
+         }
+
+         .mode-settings {
+            flex-direction: column;
+         }
+
          .placard-list {
             display: none;
          }
