@@ -3,8 +3,7 @@
 <head>
    <meta charset="UTF-8">
    <title>Monitor POC</title>
-   <link rel="stylesheet" href="css/base.css">
-   <link rel="stylesheet" href="css/monitor.css">
+   <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
    <div id="monitor-page-wrapper" class="module map-mode">
@@ -12,24 +11,28 @@
       <div class="module-inner">
          <div id="mode-settings" class="mode-settings">
             <div class="mode-header">
-               <div class="searchbox_wrapper">
-                  <div>
-                     <input class="textbox" placeholder="Search">
-                     <div class="button">?</div>
+               <div class="mode-controls">
+                  <div class="searchbox_wrapper">
+                     <div>
+                        <input class="textbox" placeholder="Search">
+                        <div class="button">?</div>
+                     </div>
+                     <div class="button button_placard-sort">&udarr;</div>
                   </div>
-                  <div class="button" >&udarr;</div>
+                  <div id="type-radio-group">
+                     <label class="radio inline">
+                        <input id="devices" type="radio" name="type" value="d" checked>Devices
+                     </label>
+                     <label class="radio inline">
+                        <input id="journeys" type="radio" name="type" value="j">Journeys
+                     </label>
+                  </div>
+                  <div class="dropdown dropdown_filters">2 Filters Applied <span style="font-size: 2em;">&rtrif;</span></div>
+                  <div class="dropdown dropdown_actions">Actions <span style="font-size: 2em;">&rtrif;</span></div>
                </div>
-               <div id="type-radio-group">
-                  <label class="radio inline">
-                     <input type="radio" name="type" value="d" checked>Devices
-                  </label>
-                  <label class="radio inline">
-                     <input type="radio" name="type" value="j">Journeys
-                  </label>
-               </div>
-               <div id="filter-dropdown" class="dropdown">2 Filters Applied <span style="font-size: 2em;">&rtrif;</span></div>
-               <div id="pagination-results">
+               <div class="pagination-results">
                   <label>Displaying <span id="page-window">1-100</span> out of<span id="total"> 891 results</span></label>
+                  <span class="separator">&nbsp;|</span>
                   <a href="#">VIEW ALL</a>
                </div>
             </div>

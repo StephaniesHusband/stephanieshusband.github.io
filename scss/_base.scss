@@ -1,7 +1,3 @@
-//===============================================================
-// Purely setup type css, not pertinent to map/list manipulation.
-//===============================================================
-
 $redesign-blue: #1F7DA4;
 
 html { background-color: yellow;}
@@ -101,7 +97,7 @@ table {
    }
 }
 
-#filter-dropdown {
+.dropdown_filters {
    display:flex;
    align-items: center;
    justify-content: center;

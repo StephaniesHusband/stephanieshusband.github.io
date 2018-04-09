@@ -19,3 +19,10 @@ $(document).ready(function() {
       $("#mode").html("Go to " + (isMapMode ? "List" : "Map"));
    });
 });
+
+$("input[type=radio][name=type]").change(function(ev) {
+   var $el = $(ev.currentTarget);
+   var isJourney = $("input[type=radio][name=type]:checked").val() === "j";
+
+   $(".dropdown_actions").css("display", isJourney && !($el.parents(".map-mode").length) ? "flex" : "none");
+});

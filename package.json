@@ -1,14 +1,14 @@
 {
-  "name": "monitor",
-  "version": "1.0.0",
-  "description": "monitor POC",
-  "main": "index.js",
-  "scripts": {
-     "scss": "node-sass --watch scss -o css"
-  },
-  "author": "Scott Erwin",
-  "license": "ISC",
-  "dependencies": {
-    "node-sass": "^4.8.3"
-  }
+   "name": "monitor",
+   "version": "1.0.0",
+   "description": "monitor POC",
+   "main": "index.js",
+   "scripts": {
+      "scss": "node-sass --watch scss -o css"
+   },
+   "author": "Scott Erwin",
+   "license": "ISC",
+   "dependencies": {
+      "node-sass": "^4.8.3"
+   }
 }
