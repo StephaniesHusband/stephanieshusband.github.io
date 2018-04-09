@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <title>Barcode POC</title>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+   <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+   <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+   <template id="scan-field">
+      <div class="form-group form-row">
+         <div class="col">
+            <label>{{field.label}}:</label>
+            <div class="input-group">
+               <input :id="field.id" class="form-control" :placeholder="field.placeholder" type="text" /> 
+               <div class="input-group-append"> 
+                  <button class="btn" type="button" data-toggle="modal" data-target="#livestream_scanner" :data-input="field.id">
+                     <i class="fa fa-barcode"></i>
+                  </button> 
+               </div>
+            </div>
+         </div>
+      </div>
+   </template>
+
+   <div id="app" class="container">
+      <h1>Barcode POC</h1>
+
+      <form>
+         <scan-field v-for="field in fields" :field="field" :key="field.id"></scan-field>
+      </form>
+
+      <div class="modal" id="livestream_scanner">
+         <div class="modal-dialog">
+            <div class="modal-content">
+               <div class="modal-header">
+                  <h4 class="modal-title">Barcode Scanner</h4>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                     <span aria-hidden="true">&times;</span>
+                  </button>
+               </div>
+
+               <div class="modal-body">
+                  <div id="interactive" class="viewport"></div>
+                  <div class="error"></div>
+                  <input type="file" accept="image/*;capture=camera" capture="camera" class="hidden" />
+               </div>
+
+               <div class="modal-footer">
+                  <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+
+   <script src="https://unpkg.com/quagga"></script>
+   <script src="https://unpkg.com/jquery"></script>
+   <script src="https://unpkg.com/vue"></script>
+   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+   <script src="barcode.js"></script>
+</body>
+</html>

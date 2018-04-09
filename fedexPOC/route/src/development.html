@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+      <meta charset="utf-8">
+      <title>Define Route POC</title>
+      <!-- bower:css -->
+      <!-- endbower -->
+
+      <link rel="stylesheet" href="../bower_components/font-awesome/css/font-awesome.min.css">
+      <link rel="stylesheet" href="styles.css">
+   </head>
+   <body>
+      <div id="arrow" class="fa fa-arrow-circle-right"></div>
+      <div id="left-panel">
+         <h3>Route Options</h3>
+         <div id="left-panel-content">
+            <p>Search: <input type="radio" name="searchType" value="D" disabled>Directory&nbsp;<input type="radio" name="searchType" value="W" checked>Web</p>
+            <p>Start: <input id="origin" type="text" data-loc="Memphis, TN" value="Memphis, TN">&nbsp;<input id="useOrigin" type="button" value="Use Journey Origin"></p>
+            <p id="stops"><p>
+            <p>End: <input id="destination" type="text" data-loc="Dallas, TX" value="Dallas, TX">&nbsp;<input id="useDest" type="button" value="Use Journey Destination"></p>
+            <p><button id="addStop">+ Add Stop</button></p>
+            <p>
+               <button id="route">Route</button>&nbsp;<button id="save">Save</button>
+            </p>
+            <div class="accordion">
+               <div class="accordion-head">
+                  <h4>Instructions</h4>&nbsp;<div class="arrow close"></div>
+               </div>
+               <ul class="accordion-body">
+                  <li>Upon entering the screen, your route is automatically computed using Origin/Destination.</li>
+                  <li>If you desire, uncheck and override the Origin or Destination with any address.</li>
+                  <li>Google will give suggested addresses as you type.</li>
+                  <li>Upon selecting a new O/D, click "Route" to compute new route.</li>
+                  <li>Rechecking O/D will replace any manually entered address with original O/D and automatically compute route.</li>
+                  <li>Add mid-journey stops by clicking 'Add Stop' and finding your stop</li>
+                  <li>Remove mid-journey stops by clicking the 'X' to the right of your stop</li>
+                  <li>Click on the route and drag to modify the route to go through a specific location.</li>
+                  <li>Once satisfied with your route, click save.</li>
+               </ul>
+            </div>
+
+            <div id="results">
+               <hr>
+               <p>This is what we'd store for the route...</p>
+               <p>Heading: <span id="angle"><span></p>
+               <p># Waypoints: <span id="numSteps"></span></p>
+               <p>Waypoints:
+                  <i>Click on a point to see it on the map.</i>
+                  <select id="waypoints" size="50"></select>
+               </p>
+            </div>
+         </div>
+      </div>
+      <div id="map"></div>
+
+      <!-- bower:js -->
+      <script src="../bower_components/jquery/dist/jquery.js"></script>
+      <script src="../bower_components/slidereveal/dist/jquery.slidereveal.min.js"></script>
+      <!-- endbower -->
+
+      <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?client=gme-fedexcorporateservices1&v=3.22&libraries=places,geometry"></script>
+      <script type="text/javascript" src="route.js"></script>
+   </body>
+</html>
