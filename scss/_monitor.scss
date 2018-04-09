@@ -1,6 +1,7 @@
 #monitor-page-wrapper {
    display: flex;
    flex-direction: column;
+   height: 100vh;
 
    // List mode & Global settings
    .pagination-results {
@@ -24,7 +25,8 @@
 
    #theMap {
       display: none;
-      min-height: 500px;
+      min-height: 300px;
+      height: 100%;
    }
 
    .pagination-nav {
@@ -34,7 +36,7 @@
    }
 
    .module-inner {
-      max-height: 500px;
+      height: 100vh;
       display: flex;
       flex-direction: column;
       position: unset;
@@ -110,6 +112,7 @@
    &.map-mode {
       .module-inner {
          flex-direction: row;
+         justify-content: stretch;
 
          & > .pagination-nav {
             display: none;
@@ -132,10 +135,6 @@
 
       .button_placard-sort {
          display: block;
-      }
-
-      .dropdown_actions {
-         display: none;
       }
 
       .mode-settings {
@@ -172,7 +171,7 @@
       }
 
       #theMap {
-         flex: 3 1;
+         flex: 3 1 auto;
       }
    }
 }
@@ -192,10 +191,10 @@
          display: block;
       }
 
-      .dropdown_actions {
-         display: flex;
-         margin-left: auto;
-         margin-right: 0;
+      .pagination-results {
+         .separator {
+            display: block;
+         }
       }
 
       .pagination-nav {
@@ -204,6 +203,7 @@
 
       .mode-settings {
          flex-direction: column;
+         flex: 0 0 auto;
 
          & > .pagination-nav {
             display: flex;
@@ -237,6 +237,12 @@
             display: block;
          } 
 
+         .pagination-results {
+            .separator {
+               display: block;
+            }
+         }
+
          .module-inner {
             flex-direction: column;
 
@@ -247,6 +253,7 @@
 
          .mode-settings {
             flex-direction: column;
+            flex-basis: auto;
          }
 
          .placard-list {
