@@ -28,7 +28,45 @@ a {
 }
 .radio {
    cursor: pointer;
+   text-transform: uppercase;
+
+   & input[type="radio"] {
+      margin: 0px 5px 0px 0px;
+      vertical-align: middle;
+      flex-shrink: 0;
+      background-color: #fff;
+      position: relative;
+      left: 0;
+      top:-1px;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      appearance: none;
+      border: 1px solid #585858;
+      border-radius: 20px;
+      height: 18px;
+      width: 18px;
+      outline: 0; /* puts square focus rect around the round control if omitted, handle focus by changing border color */
+      z-index: 9;
+
+      &:checked {
+         background: #fff;
+
+         &:after {
+            display: block;
+            content: "";
+            position: relative;
+            top: 50%;
+            left: 50%;
+            margin: -5px 0 0 -5px;
+            background: $redesign-blue;
+            border-radius: 20px;
+            height: 10px;
+            width: 10px;
+         }
+      }
+   }
 }
+
 .button {
    cursor: pointer;
    color: white;

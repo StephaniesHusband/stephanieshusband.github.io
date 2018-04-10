@@ -84,9 +84,9 @@
       flex-direction: row;
       justify-content: flex-start;
       align-items: center;
+      flex: 0 0 auto;
 
       & > * {
-         //flex: 0 0 auto;
          margin-right: 10px;
       }
    }
@@ -103,10 +103,6 @@
       overflow-y: scroll;
       height: 100%;
       flex: 1;
-
-      ul {
-         list-style-type: none;
-      }
    }
 
    .button_placard-sort {
@@ -114,7 +110,7 @@
    }
 
    .placard {
-      min-height: 100px;
+      min-height: 112px; /* same as SA */
       background: white;
       border-bottom: 1px solid lightgray;
       &:first-child {
@@ -175,9 +171,9 @@
          align-items: stretch;
          justify-content: space-between;
 
-         //& > * {
-         //   width: auto;
-         //}
+         & > * {
+            margin-bottom: 8px;
+         }
       }
 
       .placard-list {
@@ -190,10 +186,12 @@
    }
 }
 
-/* simulate mobile */
+/* "SIMULATE" MOBILE */
 @media all and (max-width: 499px) {
    #monitor-page-wrapper {
-      // first define what list mode looks like
+
+      // -- LIST MODE (OR GLOBAL SETTINGS) -----------------------------
+
       #theMap,
       #theList {
          display: none;
@@ -227,10 +225,6 @@
          & > .pagination-nav {
             display: flex;
          }
-
-         /*.mode-header {
-            flex: 0 0 auto;
-         }*/
       }
 
       .dropdown_actions {
@@ -243,6 +237,7 @@
 
          & > * {
             width: auto;
+            margin-bottom: 8px;
          }
       }
 
@@ -250,7 +245,7 @@
          display: block;
       }
 
-      // map mode
+      // -- MAP MODE ------------------------------
       &.map-mode {
          #theMap {
             display: block;
