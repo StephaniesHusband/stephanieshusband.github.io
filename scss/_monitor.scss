@@ -33,6 +33,17 @@
       flex: 1;
    }
 
+   .wrapper_radios-filters {
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-start;
+      align-items: center;
+
+      #type-radio-group {
+         margin-bottom: 5px;
+      }
+   }
+
    /*
     * monitor-page-wrapper (100vh) flex:column
     * ├-header
@@ -176,6 +187,12 @@
          }
       }
 
+      .wrapper_radios-filters {
+         display: flex;
+         flex-direction: column;
+         align-items: flex-start;
+      }
+
       .placard-list {
          display: flex;
       }
@@ -241,6 +258,12 @@
          }
       }
 
+      .wrapper_radios-filters {
+         flex-direction: row;
+         justify-content: space-between;
+         align-items: center;
+      }
+
       .footer {
          display: block;
       }
@@ -266,6 +289,12 @@
             & > .pagination-nav {
                display: none;
             }
+         }
+
+         .wrapper_radios-filters {
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
          }
 
          .placard-list {
