@@ -1,49 +1,3 @@
-#monitor-page-wrapper {
-   display: flex;
-   flex-direction: column;
-   height: 100vh;
-
-   // List mode & Global settings
-   .pagination-results {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      max-width: 300px;
-
-      .separator {
-         display: block;
-      }
-   }
-
-   #theMap {
-      display: none;
-      height: 100%;
-   }
-
-   // all instances
-   .pagination-nav {
-      display: flex;
-      justify-content: space-between;
-      flex-shrink: 0; // don't squash me bro
-   }
-
-   .module-inner {
-      display: flex;
-      flex-direction: column;
-      flex: 1;
-   }
-
-   .wrapper_radios-filters {
-      display: flex;
-      flex-direction: row;
-      justify-content: flex-start;
-      align-items: center;
-
-      #type-radio-group {
-         margin-bottom: 5px;
-      }
-   }
-
    /*
     * monitor-page-wrapper (100vh) flex:column
     * ├-header
@@ -51,9 +5,12 @@
     * | ├-mode-settings
     * | | ├-mode-header
     * | | | ├-mode-controls
-    * | | | | ├-searchbox_wrapper
-    * | | | | ├-type-radio-group
-    * | | | | ├-dropdown_filters
+    * | | | | ├-wrapper_search-and-sort
+    * | | | | | ├-div (input + search button)
+    * | | | | | └-div button_placard-sort
+    * | | | | ├-wrapper_radios-filters
+    * | | | | | ├-type-radio-group (2 label radios)
+    * | | | | | └-dropdown_filters
     * | | | | └-dropdown_actions
     * | | | └-pagination-results
     * | | ├-placard-list
@@ -65,7 +22,44 @@
     * └-footer
     */
 
-   // mode-settings is the left side bar
+@mixin h_gutter($size) {
+   & > * {
+      margin: 0 $size/2;
+
+      &:first-child {
+         margin-left: 0;
+      }
+      &:last-child {
+         margin-right: 0;
+      }
+   }
+}
+@mixin v_gutter($size) {
+   & > * {
+      margin: $size/2 0;
+
+      &:first-child {
+         margin-top: 0;
+      }
+      &:last-child {
+         margin-bottom: 0;
+      }
+   }
+}
+
+#monitor-page-wrapper {
+   display: flex;
+   flex-direction: column;
+   height: 100vh; /* very important */
+
+   // -- LIST MODE (OR GLOBAL SETTINGS) -----------------------------
+
+   .module-inner {
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+   }
+
    .mode-settings {
       display: flex;
       justify-content: flex-start;
@@ -74,6 +68,50 @@
       & > .pagination-nav {
          display: none;
       }
+   }
+
+   .pagination-results {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 300px;
+
+      .separator {
+         display: block;
+      }
+   }
+
+   .wrapper_search-and-sort {
+      display: flex;
+
+      @include h_gutter(6px);
+
+      & > div:first-child {
+         flex: 1; // grow input+btn to fill space
+
+         display: flex;
+
+         input {
+            flex: 1; // grow input to fill space
+            padding-left: 5px;
+         }
+      }
+   }
+
+   // all instances
+   .pagination-nav {
+      display: flex;
+      justify-content: space-between;
+      flex-shrink: 0; // don't squash me bro
+   }
+
+   .wrapper_radios-filters {
+      display: flex;
+      flex-flow: row wrap;
+      justify-content: space-between;
+      align-items: baseline;
+
+      @include h_gutter(6px);
    }
 
    .mode-header {
@@ -97,15 +135,15 @@
       align-items: center;
       flex: 0 0 auto;
 
-      & > * {
-         margin-right: 10px;
+      @include h_gutter(6px);
+
+      .dropdown_actions {
+         margin-left: auto; /* push all way to right */
       }
    }
 
-   .dropdown_actions {
-      display: flex;
-      margin-left: auto; /* push all way to right */
-      margin-right: 0;
+   .button_placard-sort {
+      display: none;
    }
 
    .placard-list {
@@ -116,10 +154,6 @@
       flex: 1;
    }
 
-   .button_placard-sort {
-      display: none;
-   }
-
    .placard {
       min-height: 112px; /* same as SA */
       background: white;
@@ -127,6 +161,11 @@
       &:first-child {
          border-top: 1px solid lightgray;
       }
+   }
+
+   #theMap {
+      display: none;
+      height: 100%;
    }
 
    &.map-mode {
@@ -140,41 +179,27 @@
          }
       }
 
-      .pagination-results {
-         max-width: 100%;
-         .separator {
-            display: none;
-         }
-      }
-
-      #theList {
-         display: none;
-      }
-      #theMap {
-         display: block;
-      }
-
-      .button_placard-sort {
-         display: block;
+      /* have to put v_gutter on so when/if it wraps */
+      .wrapper_radios-filters {
+         @include v_gutter(6px);
       }
 
       .mode-settings {
          min-width: 255px;
-         display: flex; 
+         max-width: 380px;
+         display: flex;
          flex-direction: column;
          flex: 0 0 30%;
 
          & > .pagination-nav {
             display: flex;
          }
-
-         .mode-header {
-            flex: 0 0 auto;
-         }
       }
 
-      .dropdown_actions {
-         display: none;
+      .mode-header {
+         flex: 0 0 auto;
+
+         @include v_gutter(6px);
       }
 
       .mode-controls {
@@ -182,23 +207,36 @@
          align-items: stretch;
          justify-content: space-between;
 
-         & > * {
-            margin-bottom: 8px;
+         @include v_gutter(6px);
+
+         .dropdown_actions {
+            display: none;
          }
       }
 
-      .wrapper_radios-filters {
-         display: flex;
-         flex-direction: column;
-         align-items: flex-start;
+      .button_placard-sort {
+         display: block;
+      }
+
+      // All instances
+      .pagination-results {
+         max-width: none;
+
+         .separator {
+            display: none;
+         }
       }
 
       .placard-list {
          display: flex;
       }
 
+      #theList {
+         display: none;
+      }
       #theMap {
-         flex: 3 1 auto;
+         display: block;
+         flex: 1;
       }
    }
 }
@@ -207,7 +245,43 @@
 @media all and (max-width: 499px) {
    #monitor-page-wrapper {
 
-      // -- LIST MODE (OR GLOBAL SETTINGS) -----------------------------
+      // -- MOBILE LIST MODE (OR GLOBAL MOBILE SETTINGS) -----------------------------
+
+      .module-inner {
+         flex-direction: row;
+
+         & > .pagination-nav {
+            display: none;
+         }
+      }
+
+      .mode-settings {
+         flex-direction: column;
+         flex: 0 0 auto; // children will not grow or shrink
+
+         & > .pagination-nav {
+            display: flex;
+         }
+      }
+
+      .mode-header {
+         @include v_gutter(6px);
+      }
+
+      .mode-controls {
+         flex-direction: column;
+         align-items: stretch;
+
+         @include v_gutter(6px);
+
+         .dropdown_actions {
+            display: none;
+         }
+      }
+
+      .wrapper_radios-filters {
+         @include v_gutter(6px);
+      }
 
       #theMap,
       #theList {
@@ -227,53 +301,12 @@
          }
       }
 
-      .module-inner {
-         flex-direction: row;
-
-         & > .pagination-nav {
-            display: none;
-         }
-      }
-
-      .mode-settings {
-         flex-direction: column;
-         flex: 0 0 auto;
-
-         & > .pagination-nav {
-            display: flex;
-         }
-      }
-
-      .dropdown_actions {
-         display: none;
-      }
-
-      .mode-controls {
-         flex-direction: column;
-         align-items: stretch;
-
-         & > * {
-            width: auto;
-            margin-bottom: 8px;
-         }
-      }
-
-      .wrapper_radios-filters {
-         flex-direction: row;
-         justify-content: space-between;
-         align-items: center;
-      }
-
       .footer {
          display: block;
       }
 
       // -- MAP MODE ------------------------------
       &.map-mode {
-         #theMap {
-            display: block;
-         } 
-
          .module-inner {
             flex-direction: column;
 
@@ -291,15 +324,13 @@
             }
          }
 
-         .wrapper_radios-filters {
-            flex-direction: row;
-            justify-content: space-between;
-            align-items: center;
-         }
-
          .placard-list {
             display: none;
          }
+
+         #theMap {
+            display: block;
+         } 
       }
    }
 }

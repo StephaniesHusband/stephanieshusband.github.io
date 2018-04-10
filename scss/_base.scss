@@ -90,6 +90,7 @@ a {
    max-width: 130px;
    padding: 0 5px;
 }
+
 .module {
    background: white;
 
@@ -118,28 +119,6 @@ table {
    background-color: lightblue;
 }
 
-.searchbox_wrapper {
-   display: flex;
-
-   & > div:first-child {
-      flex: 1; // grow as wide as you can
-
-      display: flex;
-      margin-right: 5px;
-
-      input {
-         flex: 1; // grow as wide as you can
-         padding-left: 5px;
-      }
-   }
-}
-
-.dropdown_filters {
-   display:flex;
-   align-items: center;
-   justify-content: center;
-}
-
 #footer {
    background: lightgray;
    text-align: center;
@@ -147,4 +126,5 @@ table {
 
 #radio-group-type {
    display: inline-block;
+   whitespace: nowrap;
 }
