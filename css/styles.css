@@ -118,6 +118,15 @@ table {
   display: inline-block;
   whitespace: nowrap; }
 
+.placard-list > div {
+  padding: 5px;
+  min-height: 112px;
+  /* same as SA */
+  background: white;
+  border-bottom: 1px solid lightgray; }
+  .placard-list > div:first-child {
+    border-top: 1px solid lightgray; }
+
 /*
     * monitor-page-wrapper (100vh) flex:column
     * ├-header
@@ -225,13 +234,6 @@ table {
     overflow-y: scroll;
     height: 100%;
     flex: 1; }
-  #monitor-page-wrapper .placard {
-    min-height: 112px;
-    /* same as SA */
-    background: white;
-    border-bottom: 1px solid lightgray; }
-    #monitor-page-wrapper .placard:first-child {
-      border-top: 1px solid lightgray; }
   #monitor-page-wrapper #theMap {
     display: none;
     height: 100%; }

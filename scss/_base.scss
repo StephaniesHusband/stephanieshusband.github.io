@@ -128,3 +128,14 @@ table {
    display: inline-block;
    whitespace: nowrap;
 }
+
+.placard-list > div {
+   padding: 5px;
+   min-height: 112px; /* same as SA */
+   background: white;
+   border-bottom: 1px solid lightgray;
+
+   &:first-child {
+      border-top: 1px solid lightgray;
+   }
+}
