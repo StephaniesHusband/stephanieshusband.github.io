@@ -1,6 +1,6 @@
 $redesign-blue: #1F7DA4;
 
-html { background-color: yellow;}
+html { background-color: black;}
 
 * { // reset
    margin: 0;
@@ -10,10 +10,10 @@ html { background-color: yellow;}
 body {
    font-family: "Arial Narrow", Arial, Helvetica, sans-serif;
    height: 100vh;
-   background: orange;
    display: flex;
    flex-direction: column;
 }
+
 a {
    text-decoration: none;
    color: $redesign_blue;

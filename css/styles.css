@@ -1,6 +1,6 @@
 @charset "UTF-8";
 html {
-  background-color: yellow; }
+  background-color: black; }
 
 * {
   margin: 0;
@@ -10,7 +10,6 @@ html {
 body {
   font-family: "Arial Narrow", Arial, Helvetica, sans-serif;
   height: 100vh;
-  background: orange;
   display: flex;
   flex-direction: column; }
 
@@ -150,6 +149,59 @@ table {
     * | └-pagination-nav (#2)
     * └-footer
     */
+.wrapper_filters {
+  opacity: 1;
+  display: none;
+  background: white;
+  flex-direction: column;
+  align-items: stretch;
+  overflow-y: auto;
+  border: 1px solid lightgray;
+  padding: 5px;
+  height: 500px;
+  width: 300px;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  margin: auto; }
+  .wrapper_filters .wrapper {
+    display: flex;
+    margin-left: 10px;
+    flex-direction: column;
+    align-items: stretch; }
+    .wrapper_filters .wrapper .checkbox {
+      display: block; }
+  .wrapper_filters .wrapper_date,
+  .wrapper_filters .wrapper_last {
+    display: flex;
+    flex-direction: row;
+    align-items: center; }
+    .wrapper_filters .wrapper_date > *,
+    .wrapper_filters .wrapper_last > * {
+      margin: 0 1px; }
+      .wrapper_filters .wrapper_date > *:first-child,
+      .wrapper_filters .wrapper_last > *:first-child {
+        margin-left: 0; }
+      .wrapper_filters .wrapper_date > *:last-child,
+      .wrapper_filters .wrapper_last > *:last-child {
+        margin-right: 0; }
+    .wrapper_filters .wrapper_date .textbox,
+    .wrapper_filters .wrapper_last .textbox {
+      flex: 1;
+      max-width: 125px; }
+  .wrapper_filters .wrapper_alerts {
+    flex-flow: row wrap; }
+    .wrapper_filters .wrapper_alerts .checkbox {
+      flex: 0 0 50%; }
+    .wrapper_filters .wrapper_alerts .checkbox:last-child {
+      flex: 1;
+      margin-top: 5px; }
+
+.dlg-open #monitor-page-wrapper {
+  opacity: 0.7; }
+
 #monitor-page-wrapper {
   display: flex;
   flex-direction: column;
@@ -172,6 +224,14 @@ table {
     max-width: 300px; }
     #monitor-page-wrapper .pagination-results .separator {
       display: block; }
+  #monitor-page-wrapper .wrapper_placard-list-sort {
+    background: #1F7DA4;
+    padding: 8px;
+    display: none;
+    align-items: center; }
+    #monitor-page-wrapper .wrapper_placard-list-sort select {
+      height: 28px;
+      flex: 1; }
   #monitor-page-wrapper .wrapper_search-and-sort {
     display: flex; }
     #monitor-page-wrapper .wrapper_search-and-sort > * {

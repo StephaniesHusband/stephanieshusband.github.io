@@ -24,6 +24,16 @@
                      </div>
                      <div class="button button_placard-sort">&udarr;</div>
                   </div>
+                  <div class="wrapper_placard-list-sort">
+                     <select id="placardList-sort-field">
+                        <option value="1">Journey Name</option>
+                        <option value="2">Start Date</option>
+                        <option value="3">Other 3</option>
+                        <option value="4">Other 4</option>
+                        <option value="5">Other 5</option>
+                     </select>
+                     <div class="button">&uarr;</div>
+                  </div>
                   <div class="wrapper_radios-filters">
                      <div id="type-radio-group">
                         <label class="radio inline">
@@ -156,5 +166,47 @@
    </div>
    <div id="size"></div>
    <script src="js/index.js"></script>
+   <div class="wrapper wrapper_filters module">
+      <h2>Filter Settings</h2>
+      <div class="module-inner">
+         <div class="wrapper_date"><label>Date:</label><input class="textbox"><label> to </label><input class="textbox"></div>
+         <div class="wrapper_last"><label>Last </label><input class="textbox"><label> days</label></div>
+         <label>Status:</label>
+         <div class="wrapper wrapper_status">
+            <label class="checkbox"><input type="checkbox" name="type" value="1" checked>Open Journeys</label>
+            <div class="wrapper wrapper_phases">
+               <label class="checkbox"><input type="checkbox" name="phase" value="1" checked>Staged-Ready for Shipment</label>
+               <label class="checkbox"><input type="checkbox" name="phase" value="2" checked>Inventory</label>
+               <label class="checkbox"><input type="checkbox" name="phase" value="3" checked>Received</label>
+               <label class="checkbox"><input type="checkbox" name="phase" value="4" checked>In Transit - Outbound</label>
+               <label class="checkbox"><input type="checkbox" name="phase" value="5" checked>In Transit - Inbound</label>
+            </div>
+            <label class="checkbox"><input type="checkbox" name="type" value="2" checked>Closed Journeys</label>
+            <label class="checkbox"><input type="checkbox" name="type" value="3" checked>Queued Journeys</label>
+         </div>
+         <label>Dismissed:</label>
+         <div class="wrapper wrapper_dismissed">
+            <label class="checkbox"><input type="checkbox" name="dismissed" value="1" checked>Yes</label>
+            <label class="checkbox"><input type="checkbox" name="dismissed" value="2" checked>No</label>
+         </div>
+         <label>Alerts:</label>
+         <div class="wrapper wrapper_alerts">
+            <label class="checkbox"><input type="checkbox" name="alerts" value="1" checked>Device Temp</label>
+            <label class="checkbox"><input type="checkbox" name="alerts" value="2" checked>Probe Temp</label>
+            <label class="checkbox"><input type="checkbox" name="alerts" value="2" checked>Light Detection</label>
+            <label class="checkbox"><input type="checkbox" name="alerts" value="2" checked>Shock</label>
+            <label class="checkbox"><input type="checkbox" name="alerts" value="2" checked>Geofence</label>
+            <label class="checkbox"><input type="checkbox" name="alerts" value="2" checked>Route Geofence</label>
+            <label class="checkbox"><input type="checkbox" name="alerts" value="2" checked>Humidity</label>
+            <label class="checkbox"><input type="checkbox" name="alerts" value="2" checked>Battery</label>
+            <label class="checkbox"><input type="checkbox" name="alerts" value="2" checked>No Alerts</label>
+         </div>
+         <div class="button-bar">
+            <button>Cancel</button>
+            <button>Save as Default</button>
+            <button>Apply</button>
+         </div>
+      </div>
+   </div>
 </body>
 </html>
