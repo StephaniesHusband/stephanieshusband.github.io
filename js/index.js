@@ -38,11 +38,25 @@ $(document).ready(function() {
       displayFiltersDropdown();
    });
 
+   $("#btn-cancel").one("click", function() {
+      //alert("cancel");
+   });
+   $("#btn-apply").one("click", function() {
+      //alert("apply");
+   });
+   $("#btn-save-as-default").one("click", function() {
+      //alert("save as default");
+   });
+
    $(".dropdown-dlg_filters .dd-button").click(function() {
       var $ddf = $(this).parent();
 
       if (!$ddf.hasClass("dd-open")) {
-         $ddf.addClass("dd-open").find(".filter-footer .button").one("click", function() {
+         $ddf.find(".filter-body").scrollTop(0);
+
+         $ddf.addClass("dd-open");
+
+         $ddf.find(".filter-footer .button").click(function() {
             $ddf.removeClass("dd-open");
          });
       }
