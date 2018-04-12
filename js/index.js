@@ -38,20 +38,17 @@ $(document).ready(function() {
       var $filterDlg = $(".wrapper_filters");
      
       $body.addClass("dlg-open");
-      $filterDlg.show();
 
-      $(".wrapper_filters .button-bar button").click(function() {
+      $(".wrapper_filters .button-bar .button").click(function() {
          $filterDlg.hide();
          $body.removeClass("dlg-open");
       });
 
-      /*
-      $(".wrapper_filters").slideToggle({
+      $(".wrapper_filters").toggle({
          start: function() {
             $(this).css("display", "flex");
          }
       });
-      */
    });
 });
 

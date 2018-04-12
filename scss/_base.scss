@@ -1,4 +1,37 @@
-$redesign-blue: #1F7DA4;
+$redesign-blue:              #1F7DA4;
+$senseaware-red:             #E5173F;
+$senseaware-yellow:          #FFA500;
+$senseaware-green:           #006400;
+$senseaware-light-gray:      #E8E8E8;
+$senseaware-gray:            #CCC;
+$senseaware-medium-gray:     #999;
+$senseaware-dark-gray:       #666;
+$senseaware-super-dark-gray: #333;
+
+@mixin h_gutter($size) {
+   & > * {
+      margin: 0 $size/2;
+
+      &:first-child {
+         margin-left: 0;
+      }
+      &:last-child {
+         margin-right: 0;
+      }
+   }
+}
+@mixin v_gutter($size) {
+   & > * {
+      margin: $size/2 0;
+
+      &:first-child {
+         margin-top: 0;
+      }
+      &:last-child {
+         margin-bottom: 0;
+      }
+   }
+}
 
 html { background-color: black;}
 
@@ -66,6 +99,134 @@ a {
       }
    }
 }
+.checkbox {
+   cursor: pointer;
+   display: flex;
+   justify-content: flex-start;
+   align-items: center;
+
+   input {
+      background: #fff;
+      border: 1px solid #585858;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      appearance: none;
+      height: 18px;
+      width: 18px;
+      margin-right: 5px;
+      outline: 0;
+      position: relative; /* NOTE:003 - this is purely to allow the checkbox to appear over and outside the bounds of
+                           * the box itself. If this UX is not really desired we can remove this. SERWIN */
+
+      &:checked:after {
+         content: "\2713";
+         font-size: 24px;
+         font-weight: bold;
+         color: $redesign-blue;
+         line-height: 17px;
+         position: absolute;     /* See NOTE:003 */
+         left: 50%;              /* See NOTE:003 */
+         top: 50%;               /* See NOTE:003 */
+         margin: -11px 0 0 -6px; /* See NOTE:003 */
+      }
+
+      // not using hyphen to escape selectors using: [class*="icon-"]
+      &.iconcheckbox {
+         display: none;
+
+         ~ [class*="icon-"]:before {
+            font-size: 18px;
+            color: $senseaware-gray;
+            margin-right: 5px;
+         }
+
+         &:checked ~ [class*="icon-"]:before {
+            color: $redesign-blue;
+         }
+
+         &.lg ~ [class*="icon-"]:before {
+            font-size: 22px;
+         }
+      }
+   }
+
+   &.only {
+      justify-content: center;
+      input {
+         margin-left: 0;
+         margin-right: 0;
+      }
+   }
+
+   & input:disabled:not(.readonly),
+   & input:disabled:not(.readonly) + label {
+      border-color: $senseaware-gray;
+      color: $senseaware-gray;
+
+      &:checked:after {
+         color: $senseaware-gray;
+      }
+
+      &.iconcheckbox ~ [class*="icon-"] {
+         opacity: 0.5;
+      }
+   }
+
+   /* separated from above for reason explained in note below */
+   & input:disabled {
+      pointer-events: none;
+   }
+
+   &.disabled {
+      color: $senseaware-gray;
+
+      input {
+         pointer-events: none;
+         border-color: $senseaware-gray;
+
+         &:checked:after {
+            color: $senseaware-gray;
+         }
+      }
+
+      .iconcheckbox ~ [class*="icon-"] {
+         pointer-events: none;
+         opacity: 0.5;
+      }
+
+      /* NOTE if your label is a label-info (link) you still will want the pointer-events so that's why the
+       * pointer-events:none is on the input and not the entire checkbox control. But if your label is a mix (has a link
+       * contained in regular text AND you have the label:for hooked up, you will still receive the check/uncheck pointer
+       * event so you'll need to disable manually for those cases or remove the label:for ability */
+   }
+
+   &.readonly {
+      /* NOTE Preventing pointer events at the wrapper level.  Doing this will not provide the same functionality as disabled
+       * where you may want the labels to listen for clicks due to links. See styleguide for example readonly with link
+       */
+      pointer-events: none;
+
+      input {
+         border-color: $senseaware-gray;
+      }
+   }
+
+   & input.readonly {
+      border-color: $senseaware-gray;
+   }
+
+   /* only applicable if used in conjunction with checkbox class */
+   &.label-first {
+      flex-direction: row-reverse;
+      justify-content: flex-end;
+
+      .iconcheckbox ~ [class*="icon-"]:before,
+      input {
+         margin-left: 5px; /* reverse margin too */
+         margin-right: 0;
+      }
+   }
+}
 
 .button {
    cursor: pointer;
@@ -73,11 +234,26 @@ a {
    height: 30px;
    line-height: 30px;
    min-width: 30px;
-   width: 30px;
-   background: $redesign_blue;
    text-align: center;
    font-size: 1.5em;
+   background: $redesign_blue;
+
+   &.button_secondary {
+      background: $senseaware-dark-gray;
+      font-size: 1em;
+   }
+
+   &.button_primary {
+      background: $redesign_blue;
+      font-size: 1em;
+   }
 }
+
+.button-bar {
+   margin: 0;
+   @include v_gutter(2px);
+}
+
 .dropdown {
    cursor: pointer;
    height: 30px;
