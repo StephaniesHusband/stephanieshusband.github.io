@@ -1,7 +1,7 @@
 function displayFiltersDropdown() {
    var isJourney = $("input[type=radio][name=type]:checked", "#type-radio-group").val() === "j";
 
-   $(".dropdown_filters").css("display", isJourney ? "flex" : "none");
+   //$(".dropdown-dlg_filters").css("display", isJourney ? "inline-block" : "none");
 }
 
 function displayMode() {
@@ -33,7 +33,7 @@ $(document).ready(function() {
       displayFiltersDropdown();
    });
 
-   $(".dropdown_filters").click(function() {
+   /*$(".dropdown_filters").click(function() {
       var $body = $("body");
       var $filterDlg = $(".wrapper_filters");
      
@@ -50,5 +50,6 @@ $(document).ready(function() {
          }
       });
    });
+   */
 });
 

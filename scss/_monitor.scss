@@ -140,7 +140,7 @@
    .placard-list {
       display: none;
       flex-direction: column;
-      overflow-y: scroll;
+      overflow-y: auto;
       height: 100%;
       flex: 1;
    }
@@ -223,28 +223,29 @@
    }
 }
 
-.wrapper_filters {
-   opacity: 1;
-   display: none;
-   background: white;
-   flex-direction: column;
-   align-items: stretch;
-   height: 500px;
-   width: 300px;
+.dropdown-dlg_filters {
+   .dd-body {
+      border: 1px solid $senseaware-light-gray;
+      max-height: calc(100vh - 145px); // TEST this
+   }
+   .dd-footer {
+      height: 45px;
 
-   // this is only to make it look like a dialog
-   position: absolute;
-   top: 0;
-   right: 0;
-   bottom: 0;
-   left: 0;
-   margin: auto;
-   // end
+      @include h_gutter(2px);
 
-   .module-inner {
-      padding: 5px;
-      overflow-y: auto;
+      button {
+         height: auto;
+         padding: 0 10px;
+      }
+   }
+   .dd-body-inner {
       flex: 1;
+      padding: 10px;
+      overflow-y: auto;
+
+      & > * {
+         flex: 0 0 auto;
+      }
 
       @include v_gutter(10px);
 
@@ -297,11 +298,12 @@
 
       .checkbox {
          flex: 0 0 45%;
+         white-space: nowrap;
       }
 
       .checkbox:last-child {
-         flex: 1;
-         margin-top: 5px;
+         flex: 1; // take whole line &
+         margin-top: 15px; // stand away from other alerts
       }
    }
 }
@@ -398,4 +400,16 @@
          }
       }
    }
+
+   .dropdown-dlg_filters .dd-body {
+      right: 0;
+   }
 }
+
+@media all and (max-width: 330px) { // estimate only
+   .dropdown-dlg_filters .dd-body {
+      right: auto;
+   }
+}
+
+
