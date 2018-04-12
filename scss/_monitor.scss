@@ -225,20 +225,15 @@
    .dd-body {
       border: 1px solid $senseaware-light-gray;
       max-height: calc(100vh - 145px); // TEST this
+      min-width: 330px;
    }
-   .dd-footer {
-      height: 45px;
 
-      @include h_gutter(2px);
-
-      button {
-         height: auto;
-         padding: 0 10px;
-      }
-   }
-   .dd-body-inner {
+   .filter-body {
       flex: 1;
       padding: 10px;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
       overflow-y: auto;
 
       & > * {
@@ -254,6 +249,20 @@
          display: block;
          font-weight: bold;
          color: $senseaware-dark-gray;
+      }
+   }
+
+   .filter-footer {
+      min-height: 35px;
+      height: 45px;
+      display: flex;
+      justify-content: flex-end;
+
+      @include h_gutter(2px);
+
+      button {
+         height: auto;
+         padding: 0 10px;
       }
    }
 

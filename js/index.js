@@ -1,7 +1,12 @@
 function displayFiltersDropdown() {
    var isJourney = $("input[type=radio][name=type]:checked", "#type-radio-group").val() === "j";
+   var $dd = $(".dropdown-dlg_filters");
 
-   //$(".dropdown-dlg_filters").css("display", isJourney ? "inline-block" : "none");
+   $dd.toggle(isJourney);
+
+   if (!isJourney) {
+      $dd.find(".dd-input").prop("checked", false);
+   }
 }
 
 function displayMode() {
@@ -33,23 +38,14 @@ $(document).ready(function() {
       displayFiltersDropdown();
    });
 
-   /*$(".dropdown_filters").click(function() {
-      var $body = $("body");
-      var $filterDlg = $(".wrapper_filters");
-     
-      $body.addClass("dlg-open");
+   $(".dropdown-dlg_filters .dd-button").click(function() {
+      var $ddf = $(this).parent();
 
-      $(".wrapper_filters .button-bar .button").click(function() {
-         $filterDlg.hide();
-         $body.removeClass("dlg-open");
-      });
-
-      $(".wrapper_filters").toggle({
-         start: function() {
-            $(this).css("display", "flex");
-         }
-      });
+      if (!$ddf.hasClass("dd-open")) {
+         $ddf.addClass("dd-open").find(".filter-footer .button").one("click", function() {
+            $ddf.removeClass("dd-open");
+         });
+      }
    });
-   */
 });
 
