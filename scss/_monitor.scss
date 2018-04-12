@@ -179,8 +179,6 @@
       }
 
       .mode-header {
-         flex: 0 0 auto;
-
          @include v_gutter(6px);
       }
 
@@ -315,7 +313,8 @@
       // -- MOBILE LIST MODE (OR GLOBAL MOBILE SETTINGS) -----------------------------
 
       .module-inner {
-         flex-direction: row;
+         flex-direction: column;
+         align-items: stretch;
 
          & > .pagination-nav {
             display: none;
@@ -376,6 +375,7 @@
       &.map-mode {
          .module-inner {
             flex-direction: column;
+            align-items: stretch;
 
             & > .pagination-nav {
                display: flex;
@@ -383,6 +383,7 @@
          }
 
          .mode-settings {
+            max-width: none;
             flex-direction: column;
             flex-basis: auto;
 
@@ -411,5 +412,3 @@
       right: auto;
    }
 }
-
-

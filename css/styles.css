@@ -248,12 +248,12 @@ table {
   .dropdown-dlg .dd-button:hover {
     background-color: #b5b5b5; }
 
-.dropdown-dlg .dd-input,
-.dropdown-dlg .dd-input + .dd-body {
+.dropdown-dlg .dd-input {
   display: none; }
-
-.dropdown-dlg .dd-input:checked + .dd-body {
-  display: flex; }
+  .dropdown-dlg .dd-input + .dd-body {
+    display: none; }
+  .dropdown-dlg .dd-input:checked + .dd-body {
+    display: flex; }
 
 .dropdown-dlg .dd-body {
   display: flex;
@@ -273,6 +273,7 @@ table {
     justify-content: flex-end; }
 
 .dropdown-dlg .dropdown-dlg.right-aligned .dd-body {
+  left: auto;
   right: 0; }
 
 /*
@@ -417,14 +418,12 @@ table {
       flex: 0 0 30%; }
       #monitor-page-wrapper.map-mode .mode-settings > .pagination-nav {
         display: flex; }
-    #monitor-page-wrapper.map-mode .mode-header {
-      flex: 0 0 auto; }
-      #monitor-page-wrapper.map-mode .mode-header > * {
-        margin: 3px 0; }
-        #monitor-page-wrapper.map-mode .mode-header > *:first-child {
-          margin-top: 0; }
-        #monitor-page-wrapper.map-mode .mode-header > *:last-child {
-          margin-bottom: 0; }
+    #monitor-page-wrapper.map-mode .mode-header > * {
+      margin: 3px 0; }
+      #monitor-page-wrapper.map-mode .mode-header > *:first-child {
+        margin-top: 0; }
+      #monitor-page-wrapper.map-mode .mode-header > *:last-child {
+        margin-bottom: 0; }
     #monitor-page-wrapper.map-mode .mode-controls {
       flex-direction: column;
       align-items: stretch;
@@ -536,7 +535,8 @@ table {
 /* "SIMULATE" MOBILE */
 @media all and (max-width: 499px) {
   #monitor-page-wrapper .module-inner {
-    flex-direction: row; }
+    flex-direction: column;
+    align-items: stretch; }
     #monitor-page-wrapper .module-inner > .pagination-nav {
       display: none; }
   #monitor-page-wrapper .mode-settings {
@@ -581,10 +581,12 @@ table {
   #monitor-page-wrapper .footer {
     display: block; }
   #monitor-page-wrapper.map-mode .module-inner {
-    flex-direction: column; }
+    flex-direction: column;
+    align-items: stretch; }
     #monitor-page-wrapper.map-mode .module-inner > .pagination-nav {
       display: flex; }
   #monitor-page-wrapper.map-mode .mode-settings {
+    max-width: none;
     flex-direction: column;
     flex-basis: auto; }
     #monitor-page-wrapper.map-mode .mode-settings > .pagination-nav {

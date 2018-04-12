@@ -323,7 +323,7 @@ table {
       cursor: pointer;
       white-space: nowrap;
 
-      &:after {
+      &:after { // the arrow
          content: "";
          position: absolute;
          top: 50%;
@@ -340,20 +340,24 @@ table {
          background-color: darken($senseaware-light-gray, 20%);
       }
    }
-   .dd-input,
-   .dd-input + .dd-body {
-      display: none;
-   }
 
-   .dd-input:checked + .dd-body {
-      display: flex;
+   .dd-input {
+      display: none;
+
+      & + .dd-body { // initially
+         display: none;
+      }
+
+      &:checked + .dd-body {
+         display: flex; // always assuming body is flex (vs block, etc.)
+      }
    }
 
    .dd-body {
       display: flex;
       flex-direction: column;
 
-      position: absolute;
+      position: absolute; // make appear on top of everything else
       top: 100%;
       box-shadow: 0 0 6px 0 rgba(0,0,0,0.1);
       background-color: white;
@@ -372,7 +376,9 @@ table {
       }
    }
 
+   // If you know it's always right aligned add this class to parent, else switch with media queries
    .dropdown-dlg.right-aligned .dd-body {
+      left: auto;
       right: 0;
    }
 }
