@@ -223,7 +223,6 @@
 
 .dropdown-dlg_filters {
    .dd-body {
-      border: 1px solid $senseaware-light-gray;
       max-height: calc(100vh - 145px); // TEST this
       min-width: 330px;
    }
@@ -257,7 +256,7 @@
       display: flex;
       justify-content: flex-end;
 
-      @include h_gutter(2px);
+      @include h_gutter(1px);
 
       .button {
          display: flex;
