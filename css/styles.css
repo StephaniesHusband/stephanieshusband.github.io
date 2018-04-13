@@ -500,6 +500,15 @@ table {
   flex: 1;
   max-width: 100px; }
 
+.dropdown-dlg_filters .filter-section_date .radio .checkbox {
+  display: none;
+  font-size: 0.8em;
+  margin-left: 23px;
+  margin-top: 5px; }
+
+.dropdown-dlg_filters .filter-section_date .radio input:checked ~ .checkbox {
+  display: block; }
+
 .dropdown-dlg_filters .filter-section_alerts .filter-section-body {
   flex-flow: row wrap; }
   .dropdown-dlg_filters .filter-section_alerts .filter-section-body .checkbox {

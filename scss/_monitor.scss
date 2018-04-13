@@ -291,6 +291,17 @@
          flex: 1;
          max-width: 100px;
       }
+
+      .radio .checkbox {
+         display: none;
+         font-size: 0.8em;
+         margin-left: 23px;
+         margin-top: 5px;
+      }
+
+      .radio input:checked ~ .checkbox {
+         display: block;
+      }
    }
 
    .filter-section_alerts .filter-section-body {
