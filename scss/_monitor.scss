@@ -241,10 +241,8 @@
 
       @include v_gutter(10px);
 
-      .wrapper_date > label:first-child,
-      .wrapper_last > label:first-child,
-      & > label {
-         margin-top: 10px;
+      h4 {
+         //margin-top: 10px;
          display: block;
          font-weight: bold;
          color: $senseaware-dark-gray;
@@ -267,37 +265,35 @@
       }
    }
 
-   .wrapper {
+   .filter-section,
+   .filter-section-body {
       display: flex;
       flex-direction: column;
-      align-items: stretch;
 
       @include v_gutter(10px);
+   }
 
-      .checkbox {
-         display: flex;
-      }
+   .filter-section-body {
+      padding-left: 10px;
+   }
 
-      & > * {
-         margin-left: 10px;
+   .filter-section_watched-dismissed {
+      flex-direction: row;
+
+      & > .filter-section {
+         margin: 0;
+         flex: 0 0 44%; // try and make line up w/alerts
       }
    }
 
-   .wrapper_date,
-   .wrapper_last {
-      display: flex;
-      flex-direction: row;
-      align-items: center;
-
-      @include h_gutter(2px);
-
+   .filter-section_date {
       .textbox {
          flex: 1;
          max-width: 100px;
       }
    }
 
-   .wrapper_alerts {
+   .filter-section_alerts .filter-section-body {
       flex-flow: row wrap;
 
       .checkbox {

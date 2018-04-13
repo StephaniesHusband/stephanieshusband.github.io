@@ -64,12 +64,12 @@ $(document).ready(function() {
 
    $("#cb_open-journeys").change(function() {
       var isChkd = $(this).is(":checked");
-      var $phases= $(".wrapper_phases .checkbox");
+      var $phasesCb = $("#filterPhases .checkbox");
 
-      $phases.toggleClass("disabled", !isChkd);
+      $phasesCb.toggleClass("disabled", !isChkd);
 
       if (!isChkd) {
-         $phases.find("input").prop("checked", false);
+         $phasesCb.find("input").prop("checked", false);
       }
 
    });
