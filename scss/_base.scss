@@ -179,9 +179,9 @@ a {
 
    &.disabled {
       color: $senseaware-gray;
+      pointer-events: none;
 
       input {
-         pointer-events: none;
          border-color: $senseaware-gray;
 
          &:checked:after {

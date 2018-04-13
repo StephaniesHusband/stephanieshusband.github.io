@@ -61,5 +61,16 @@ $(document).ready(function() {
          });
       }
    });
-});
 
+   $("#cb_open-journeys").change(function() {
+      var isChkd = $(this).is(":checked");
+      var $phases= $(".wrapper_phases .checkbox");
+
+      $phases.toggleClass("disabled", !isChkd);
+
+      if (!isChkd) {
+         $phases.find("input").prop("checked", false);
+      }
+
+   });
+});

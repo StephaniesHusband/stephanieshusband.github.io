@@ -123,12 +123,12 @@ a {
     pointer-events: none; }
   .checkbox.disabled {
     color: #CCC;
+    pointer-events: none;
     /* NOTE if your label is a label-info (link) you still will want the pointer-events so that's why the
        * pointer-events:none is on the input and not the entire checkbox control. But if your label is a mix (has a link
        * contained in regular text AND you have the label:for hooked up, you will still receive the check/uncheck pointer
        * event so you'll need to disable manually for those cases or remove the label:for ability */ }
     .checkbox.disabled input {
-      pointer-events: none;
       border-color: #CCC; }
       .checkbox.disabled input:checked:after {
         color: #CCC; }
