@@ -510,9 +510,6 @@ table {
     flex: 1;
     max-width: 100px; }
 
-.dropdown-dlg_filters .wrapper_dismissed {
-  margin-left: 10px; }
-
 .dropdown-dlg_filters .wrapper_alerts {
   flex-flow: row wrap; }
   .dropdown-dlg_filters .wrapper_alerts .checkbox {
