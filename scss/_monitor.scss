@@ -253,16 +253,17 @@
    }
 
    .filter-footer {
-      min-height: 35px;
       height: 45px;
       display: flex;
       justify-content: flex-end;
 
       @include h_gutter(2px);
 
-      button {
-         height: auto;
+      .button {
+         display: flex;
+         align-items: center;
          padding: 0 10px;
+         height: 100%;
       }
    }
 

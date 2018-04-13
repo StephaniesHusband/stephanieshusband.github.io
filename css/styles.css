@@ -462,7 +462,6 @@ table {
     color: #666; }
 
 .dropdown-dlg_filters .filter-footer {
-  min-height: 35px;
   height: 45px;
   display: flex;
   justify-content: flex-end; }
@@ -472,9 +471,11 @@ table {
       margin-left: 0; }
     .dropdown-dlg_filters .filter-footer > *:last-child {
       margin-right: 0; }
-  .dropdown-dlg_filters .filter-footer button {
-    height: auto;
-    padding: 0 10px; }
+  .dropdown-dlg_filters .filter-footer .button {
+    display: flex;
+    align-items: center;
+    padding: 0 10px;
+    height: 100%; }
 
 .dropdown-dlg_filters .wrapper {
   display: flex;

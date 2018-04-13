@@ -1,11 +1,11 @@
 function displayFiltersDropdown() {
    var isJourney = $("input[type=radio][name=type]:checked", "#type-radio-group").val() === "j";
-   var $dd = $(".dropdown-dlg_filters");
+   var $ddf = $(".dropdown-dlg_filters");
 
-   $dd.toggle(isJourney);
+   $ddf.toggle(isJourney);
 
    if (!isJourney) {
-      $dd.find(".dd-input").prop("checked", false);
+      $ddf.removeClass("dd-open");
    }
 }
 
