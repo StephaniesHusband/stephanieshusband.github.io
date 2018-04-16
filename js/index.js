@@ -73,4 +73,24 @@ $(document).ready(function() {
       }
 
    });
+
+   var mapOptions = {
+      center: new google.maps.LatLng(35.042881, -89.756791), // FHI
+      scrollwheel: false,
+      zoom: 5,
+      mapTypeControl: false,
+      zoomControl: true,
+      zoomControlOptions: {
+         position: google.maps.ControlPosition.RIGHT_CENTER
+      },
+      panControl: false,
+      scaleControl: true,
+      streetViewControl: false,
+      rotateControlOptions: {
+         position: google.maps.ControlPosition.LEFT_BOTTOM
+      },
+      fullscreenControl: false
+   };
+
+   var theMap = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
 });

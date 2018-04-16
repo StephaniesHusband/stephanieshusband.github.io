@@ -1,5 +1,6 @@
 @charset "UTF-8";
 html {
+  height: 100%;
   background-color: black; }
 
 * {
@@ -9,7 +10,7 @@ html {
 
 body {
   font-family: "Arial Narrow", Arial, Helvetica, sans-serif;
-  height: 100vh;
+  height: 100%;
   display: flex;
   flex-direction: column; }
 
@@ -292,7 +293,8 @@ table {
   #monitor-page-wrapper .module-inner {
     display: flex;
     flex-direction: column;
-    flex: 1; }
+    flex: 1;
+    height: 100%; }
   #monitor-page-wrapper .mode-settings {
     display: flex;
     justify-content: flex-start;
@@ -379,6 +381,8 @@ table {
   #monitor-page-wrapper #theMap {
     display: none;
     height: 100%; }
+    #monitor-page-wrapper #theMap #map-canvas {
+      height: 100%; }
   #monitor-page-wrapper.map-mode {
     /* have to put v_gutter on so when/if it wraps */ }
     #monitor-page-wrapper.map-mode .module-inner {

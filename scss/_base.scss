@@ -33,7 +33,10 @@ $senseaware-super-dark-gray: #333;
    }
 }
 
-html { background-color: black;}
+html {
+   height: 100%;
+   background-color: black;
+}
 
 * { // reset
    margin: 0;
@@ -42,7 +45,7 @@ html { background-color: black;}
 }
 body {
    font-family: "Arial Narrow", Arial, Helvetica, sans-serif;
-   height: 100vh;
+   height: 100%;
    display: flex;
    flex-direction: column;
 }
