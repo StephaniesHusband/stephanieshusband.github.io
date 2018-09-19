@@ -141,7 +141,7 @@ $(document).ready(function() {
                placeholder: "Enter # or Click to scan it in →"
             },
             {
-               label: "MAWB"
+               label: "MAWB",
                id: "mawb",
                placeholder: "Enter # or Click to scan it in →"
             },
