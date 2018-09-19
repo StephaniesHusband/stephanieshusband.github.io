@@ -141,13 +141,18 @@ $(document).ready(function() {
                placeholder: "Enter # or Click to scan it in →"
             },
             {
-               label: "ASP #",
-               id: "aspNumber",
+               label: "MAWB"
+               id: "mawb",
                placeholder: "Enter # or Click to scan it in →"
             },
             {
-               label: "Template ID",
-               id: "templateId",
+               label: "CONS",
+               id: "cons",
+               placeholder: "Enter # or Click to scan it in →"
+            },
+            {
+               label: "ULD",
+               id: "uld",
                placeholder: "Enter # or Click to scan it in →"
             }
          ]
