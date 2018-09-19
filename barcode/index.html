@@ -30,6 +30,8 @@
 
       <form>
          <scan-field v-for="field in fields" :field="field" :key="field.id"></scan-field>
+
+         <button type="button" class="btn btn-primary btn-lg btn-block">Process</button>
       </form>
 
       <div class="modal" id="livestream_scanner">
