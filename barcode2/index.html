@@ -1,22 +1,158 @@
 <!DOCTYPE html>
-<html>
-<head>
-  <script src="jquery-1.11.3.min.js"></script>
-</head>
-<body>
-  <h1>Pure JS Barcode Reader</h1>
-  <div>Barcode result: <span id="dbr"></span></div>
-  <div class="select">
-    <label for="videoSource">Video source: </label><select id="videoSource"></select>
-  </div>
-  <button id="go">Read Barcode</button>
-  <div>
-    <video muted autoplay id="video" playsinline="true"></video>
-    <canvas id="pcCanvas" width="640" height="480" style="display: none; float: bottom;"></canvas>
-    <canvas id="mobileCanvas" width="240" height="320" style="display: none; float: bottom;"></canvas>
-  </div>
-</body>
+<html lang="en">
+   <head>
+      <meta charset="UTF-8">
+      <title>ZXing PDF417 example</title>
+      <script src="./BigInteger.min.js"></script>
+      <script src="./zxing-pdf417.js"></script>
+      <script src="https://unpkg.com/jquery"></script>
+      <script>
+         (function(window, $, undefined) {
+            $(function() {
+               //var $barcode = $("#barcode");
+               var $video = $("#video");
+               var $videoSelect = $("#videoSelect");
 
-<script async src="zxing.js"></script>
-<script src="video.js"></script>
+               //------------------------------
+
+               /*function handleFiles(f) {
+                  $barcode[0].src = URL.createObjectURL(f.target.files[0]);
+               }*/
+
+               function getStream() {
+                  if (window.stream) {
+                     window.stream.getTracks().forEach(function(track) {
+                        track.stop();
+                     });
+                  }
+
+                  var constraints = {
+                     video: {
+                        deviceId: {
+                           exact: $videoSelect.val()
+                        }
+                     }
+                  };
+
+                  navigator.mediaDevices.getUserMedia(constraints).then(gotStream).catch(handleError);
+               }
+
+               function gotStream(stream) {
+                  window.stream = stream; // make stream available to console
+
+                  $video.prop("srcObject", stream);
+               }
+
+               //function doScan(image) {
+               function doScan() {
+                  var canvas = document.createElement('canvas');
+                  var canvas_context = canvas.getContext('2d');
+                  var source;
+                  var binarizer;
+                  var bitmap;
+                  var imageData;
+
+                  $('.error').empty();
+                  $('.decodedText').empty();
+
+                  //canvas.width = image.naturalWidth;
+                  //canvas.height = image.naturalHeight;
+                  //canvas_context.drawImage(image, 0, 0, canvas.width, canvas.height);
+
+                  canvas.width = $video.width();
+                  canvas.height = $video.height();
+
+                  canvas_context.drawImage($video[0], 0, 0, canvas.width, canvas.height);
+
+                  try {
+                     // Preprocess image because of the way the pdf417 library is processing the BitmapLuminanceSource
+                     // params...SERWIN
+                     imageData = canvas_context.getImageData(0, 0, canvas.width, canvas.height);
+
+                     source = new ZXing.BitmapLuminanceSource(imageData);
+                     binarizer = new ZXing.Common.HybridBinarizer(source);
+                     bitmap = new ZXing.BinaryBitmap(binarizer);
+
+                     $('.decodedText').text(JSON.stringify(ZXing.PDF417.PDF417Reader.decode(bitmap, null, false), null, 4));
+                  }
+                  catch (err) {
+                     $('.error').text(err);
+                  }
+               }
+
+               function handleError(error) {
+                  console.log('Error: ', error);
+               }
+
+               function gotDevices(deviceInfos) {
+                  for (var i=deviceInfos.length-1; i >= 0; --i) {
+                     var deviceInfo = deviceInfos[i];
+                     var option;
+
+                     if (deviceInfo.kind === 'videoinput') {
+                        option = "<option value='"+deviceInfo.deviceId+"'>"+(deviceInfo.label || 'Camera ' + ($videoSelect.length + 1))+"</option>";
+
+                        $videoSelect.append(option);
+                     }
+                     else {
+                        console.log('Found one other kind of source/device: ', deviceInfo);
+                     }
+                  }
+               }
+
+               //------------------------------
+
+               $("#startScan").click(function() {
+                  //doScan($barcode[0]);
+                  doScan();
+               });
+
+               /*$barcode.on("load", function() {
+                  doScan($barcode[0]);
+               });*/
+
+               //$('#file').change(handleFiles);
+
+               //------------------------------
+
+               navigator.mediaDevices.enumerateDevices()
+                  .then(gotDevices)
+                  .then(getStream)
+                  .catch(handleError);
+
+               $videoSelect.change(getStream);
+            });
+         })(window, window.jQuery);
+      </script>
+      <style>
+         .decodedText {
+            overflow: scroll;
+            max-width: 48%;
+            height: 500px;
+         }
+
+        .error {
+           font-weight: bold;
+           color: red;
+        }
+      </style>
+   </head>
+   <body>
+      <div>
+         <label for="video">Video element:</label>
+         <video id="video" muted autoplay playsinline="true"></video>
+         <canvas id="canvas" width="640" height="480" style="display: none; float: bottom;"></canvas>
+         <label for="videoSelect">Video source: </label>
+         <select id="videoSelect"></select>
+         <form>
+            <!-- <input type="file" id="file" /> -->
+            <button id="startScan" type="button">Start Scanning</button>
+            <div class="error"></div>
+            <div>
+               <pre class="decodedText"></pre>
+            </div>
+            <!-- <img id="barcode"> -->
+         </form>
+      </div>
+   </body>
 </html>
