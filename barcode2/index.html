@@ -9,15 +9,10 @@
       <script>
          (function(window, $, undefined) {
             $(function() {
-               //var $barcode = $("#barcode");
                var $video = $("#video");
                var $videoSelect = $("#videoSelect");
 
                //------------------------------
-
-               /*function handleFiles(f) {
-                  $barcode[0].src = URL.createObjectURL(f.target.files[0]);
-               }*/
 
                function getStream() {
                   if (window.stream) {
@@ -43,7 +38,6 @@
                   $video.prop("srcObject", stream);
                }
 
-               //function doScan(image) {
                function doScan() {
                   var canvas = document.createElement('canvas');
                   var canvas_context = canvas.getContext('2d');
@@ -54,10 +48,6 @@
 
                   $('.error').empty();
                   $('.decodedText').empty();
-
-                  //canvas.width = image.naturalWidth;
-                  //canvas.height = image.naturalHeight;
-                  //canvas_context.drawImage(image, 0, 0, canvas.width, canvas.height);
 
                   canvas.width = $video.width();
                   canvas.height = $video.height();
@@ -103,16 +93,9 @@
                //------------------------------
 
                $("#startScan").click(function() {
-                  //doScan($barcode[0]);
                   doScan();
                });
-
-               /*$barcode.on("load", function() {
-                  doScan($barcode[0]);
-               });*/
-
-               //$('#file').change(handleFiles);
-
+               
                //------------------------------
 
                navigator.mediaDevices.enumerateDevices()
@@ -139,19 +122,18 @@
    </head>
    <body>
       <div>
-         <label for="video">Video element:</label>
-         <video id="video" muted autoplay playsinline="true"></video>
-         <canvas id="canvas" width="640" height="480" style="display: none; float: bottom;"></canvas>
-         <label for="videoSelect">Video source: </label>
-         <select id="videoSelect"></select>
-         <form>
-            <!-- <input type="file" id="file" /> -->
+         <section>
+            <video id="video" muted autoplay playsinline="true"></video>
+            <canvas id="canvas" width="640" height="480" style="display: none; float: bottom;"></canvas>
+         </section>
+         <section>
+            <label for="videoSelect">Video source: </label><select id="videoSelect"></select>
             <button id="startScan" type="button">Start Scanning</button>
+         </section>
+         <section>
             <div class="error"></div>
-            <div>
-               <pre class="decodedText"></pre>
-            </div>
-            <!-- <img id="barcode"> -->
+            <pre class="decodedText"></pre>
+         </section>
          </form>
       </div>
    </body>
